@@ -14692,8 +14692,10 @@ Handlebars.VM = {
 
 Handlebars.template = Handlebars.VM.template;
 ;
+(function() {
 
+  $(document).ready(function() {
+    return $("body").toggleClass("showSidebar");
+  });
 
-
-
-
+}).call(this);

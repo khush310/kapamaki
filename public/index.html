@@ -7,80 +7,84 @@
 <body>
   <div id="stage">
     <div id="stage-wrapper">
-      <div id= "sidebar">
-        <ul>
-          <li class="search">
-            <a href="#">
-              <span class="icon-search"></span>
-              <input type="text" /> 
-            </a>
-          </li>
-          <li class="user-name">
-            <a href="#image"> </a>
-            <span>get username</span>
-          </li>
-          <li class="news-feeds">
-            <a href="#">
-              <span class="icon-list-alt"></span>
-              <span>News Feeds</span>
-            </a>
-          </li>
-          <li class="messages">
-            <a href="#">
-              <span class="icon-envelope"></span>
-              <span>Messages</span>
-            </a>
-          </li>
-          <li class="events">
-            <a href="#">
-              <span class="icon-calendar"></span>
-              <span>Events</span>
-            </a>
-          </li>
-          <li class="friends">
-            <a href="#">
-              <span class="icon-group"></span>
-              <span>Friends</span>
-            </a>
-          </li>
-          <li class="logout">
-            <a href="#">
-              <span class="icon-off"></span>
-              <span>Log Out</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-
-      <div id="main">
-        <div id ="header">
+        <div id="main">
+          <div id ="header">
+            <ul>
+              <li class="menu">
+                <span id="sidemenu">
+                  <a href="#side-menu">
+                    <span class="icon-reorder"></span>
+                  </a>
+                </span>
+                
+              </li>
+              <li class="center-menu">
+                  <span id="request">
+                    <a href="#">
+                    </a>
+                  </span>
+                  &emsp;
+                  <span id="messages">
+                    <a href="#">
+                    </a>
+                  </span>
+                  &emsp;
+                  <span id="notifications">
+                    <a href="#">
+                    </a>
+                  </span>
+                
+              </li>
+              <li class="chat">
+                <span id="chat">
+                  <a href="#chat">
+                    <span class="icon-comments"></span>
+                  </a>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div id= "sidebar">
           <ul>
-            <li class="menu">
-              <a href="#side-menu">
-                <span class="icon-reorder"></span>
+            <li class="search">
+              <input type="text" placeholder="Search" />
+            </li>
+            <li class="user-name">
+              <a href="#image"> </a>
+            </li>
+            <li class="news-feeds">
+              <a href="#">
+                News Feeds
               </a>
             </li>
-            <li class="center-menu">
-              <a href="#">
-                <span class="icon-group"></span>
-              </a>
-              <a href="#">
-                <span class="icon-envelope"></span>
-              </a>
-              <a href="#">
-                <span class="icon-globe"></span>
-              </a>
+            <li class="messages">
+                <a href="#">
+                  Messages
+                </a>
             </li>
-            <li class="chat">
-              <a href="#chat">
-                <span class="icon-comments"></span>
-              </a>
+            <li class="events">
+                <a href="#">
+                  Events
+                </a>
             </li>
+            <li class="friends">
+                <a href="#">
+                  Friends
+                </a>
+            </li>
+            <li class="logout">
+                <a href="#">
+                  Log Out
+                </a>
+            </li>
+          </ul>
+          </div>
         </div>
-        <div id="content"></div>
-      </div>
+        
+        <div id="chat">
+          <div id="chat-search"></div>
+        </div>
     </div>
   </div>
-  </body>
+</body>
 </html>
