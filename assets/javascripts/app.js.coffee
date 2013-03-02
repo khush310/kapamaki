@@ -4,4 +4,6 @@
 //= require ./lib/backbone.marionette
 //= require ./lib/handlebars
 
-$(document).ready () ->  $("body").toggleClass("showSidebar");
+$(document).ready () ->  
+  $("#sidemenu").click () ->
+    $("body").toggleClass("showSidebar");
