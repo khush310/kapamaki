@@ -13,11 +13,11 @@
 
 @media (max-width: 700px)  { 
   body.showSidebar #stage #stage-wrapper {
-    padding: 0 0 0 70%;
+    -webkit-transform:translateX(70%);
   }
 
-  body.showSidebar #stage #stage-wrapper #sidebar{
-    left: 0%;
+  #stage #stage-wrapper #sidebar{
+    left: -70% !important;
     width: 70%;
   }
 }
