@@ -14694,10 +14694,383 @@ Handlebars.template = Handlebars.VM.template;
 ;
 (function() {
 
-  $(document).ready(function() {
-    return $("#sidemenu").click(function() {
+  Backbone.Marionette.Renderer.render = function(template, data) {
+    var compiledTemplate, temp;
+    if (_.isFunction(template)) {
+      temp = template(data);
+    } else {
+      temp = template;
+    }
+    compiledTemplate = Handlebars.compile(temp);
+    return compiledTemplate(data);
+  };
+
+  Backbone.Marionette.Region.prototype.show = function(view) {
+    this.ensureEl();
+    view.render();
+    this.close();
+    this.open(view);
+    if (view.onShow) {
+      view.onShow();
+    }
+    view.trigger("show");
+    if (this.onShow) {
+      this.onShow(view);
+    }
+    this.trigger("view:show", view);
+    return this.currentView = view;
+  };
+
+}).call(this);
+if (!window.K) {
+  K = {
+
+    /**
+     * Copies things from source into target.
+     *
+     */
+
+    copy: function(target, source, overwrite, transform) {
+      for (var key in source) {
+        if (overwrite || typeof(target[key]) === 'undefined') {
+          target[key] = transform ? transform(source[key]) :  source[key];
+        }
+      }
+      return target;
+    },
+
+    /**
+     * Create a namespaced object.
+     */
+    create: function(name, value) {
+      var node = window.K, // We will use 'K' as root namespace
+      nameParts = name ? name.split('.') : [],
+      c = nameParts.length;
+      for (var i = 0; i < c; i++) {
+        var part = nameParts[i];
+        var nso = node[part];
+        if (!nso) {
+          nso = (value && i + 1 == c) ? value : {};
+          node[part] = nso;
+        }
+        node = nso;
+      }
+      return node;
+    },
+
+    /**
+     * Copy stuff from one object to the specified namespace that
+     * is K.<target>.
+     * If the namespace target doesn't exist, it will be created automatically.
+     */
+    provide: function(target, source, overwrite) {
+      // a string means a dot separated object that gets appended to, or created
+      return K.copy(
+        typeof target == 'string' ? K.create(target) : target,
+        source,
+        overwrite
+      );
+    }
+  };
+}
+;
+(function() {
+
+  K.provide("Views", {});
+
+  K.provide("Views.Landing", {});
+
+  K.provide("Views.Home", {});
+
+}).call(this);
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  K.Feed = (function(_super) {
+
+    __extends(Feed, _super);
+
+    function Feed() {
+      return Feed.__super__.constructor.apply(this, arguments);
+    }
+
+    return Feed;
+
+  })(Backbone.Model);
+
+}).call(this);
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  K.Stream = (function(_super) {
+
+    __extends(Stream, _super);
+
+    function Stream() {
+      return Stream.__super__.constructor.apply(this, arguments);
+    }
+
+    return Stream;
+
+  })(Backbone.Collection);
+
+}).call(this);
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  K.Views.Home.Item = (function(_super) {
+
+    __extends(Item, _super);
+
+    function Item() {
+      this.template = __bind(this.template, this);
+      return Item.__super__.constructor.apply(this, arguments);
+    }
+
+    Item.prototype.template = function() {
+      return this.templates[this.model.get('type')] || "";
+    };
+
+    Item.prototype.templates = {
+      link: " \n<div class=\"picture\">\n        <a href=\"http://facebook.com/{{from/id}}\">\n          <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n        </a>  \n      </div>\n      <div class=\"content\">\n        <a href=\"http://facebook.com/{{from/id}}\"> {{from/name}} </a>\n        likes <a href=\"{{link}}\">{{name}}</a>\n      </div>\n      <div class=\"clear\"></div>",
+      photo: " \n<div class=\"picture\">\n        <a href=\"http://facebook.com/{{from/id}}\"> \n          <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n        </a>  \n      </div>\n      <div class=\"content\">\n        <a href=\"http://facebook.com/{{from/id}}\"> {{from/name}} </a>\n        posted a  <a href=\"{{link}}\"> photo </a>\n        <div>\n        <img src=\"{{picture}}\" />\n        </div>\n      </div>\n      <div class=\"clear\"></div>\n"
+    };
+
+    return Item;
+
+  })(Backbone.Marionette.ItemView);
+
+}).call(this);
+(function() {
+
+
+
+}).call(this);
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  K.Views.Home.Main = (function(_super) {
+
+    __extends(Main, _super);
+
+    function Main() {
+      this.onShow = __bind(this.onShow, this);
+      return Main.__super__.constructor.apply(this, arguments);
+    }
+
+    Main.prototype.id = "stage-wrapper";
+
+    Main.prototype.template = "\n<div id= \"sidebar\"> </div>\n<div id= 'main'> \n  <div id=\"header\"> </div>\n</div>\n<div";
+
+    Main.prototype.regions = {
+      sidebarRegion: '#sidebar',
+      headerRegion: '#header'
+    };
+
+    Main.prototype.onShow = function() {
+      var headerView,
+        _this = this;
+      console.log("running onSHow");
+      headerView = new K.Views.HeaderView;
+      this.headerRegion.show(headerView);
+      FB.api('/me', function(response) {
+        var sidebarView;
+        console.log(response);
+        K.currentUser = new Backbone.Model(response);
+        sidebarView = new K.Views.Sidebar({
+          model: K.currentUser
+        });
+        return _this.sidebarRegion.show(sidebarView);
+      });
+      return console.log("finsihed showing two views in regions");
+    };
+
+    return Main;
+
+  })(Backbone.Marionette.Layout);
+
+  /*
+      FB.api '/me/home', (response) => 
+        console.log response
+        stream = new K.Stream response.data
+        console.log stream
+        streamView = new K.Views.Home.Stream collection: stream
+        console.log @
+        @streamRegion.show streamView
+  */
+
+
+  K.Views.Sidebar = (function(_super) {
+
+    __extends(Sidebar, _super);
+
+    function Sidebar() {
+      this.onShow = __bind(this.onShow, this);
+      return Sidebar.__super__.constructor.apply(this, arguments);
+    }
+
+    Sidebar.prototype.template = "<ul>\n  <li class=\"search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\">\n    <span>\n      <img src=\"http://graph.facebook.com/{{id}}/picture\" />\n    </span>\n    <a href=\"#image\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"messages\">\n      <a href=\"#\">\n        Messages\n      </a>\n  </li>\n  <li class=\"events\">\n      <a href=\"#\">\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a href=\"#\">\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a href=\"#\">\n        Log Out\n      </a>\n  </li>\n</ul>";
+
+    Sidebar.prototype.onShow = function() {
+      return console.log(this.model);
+    };
+
+    return Sidebar;
+
+  })(Backbone.Marionette.ItemView);
+
+  K.Views.HeaderView = (function(_super) {
+
+    __extends(HeaderView, _super);
+
+    function HeaderView() {
+      this.toggleSidebar = __bind(this.toggleSidebar, this);
+      return HeaderView.__super__.constructor.apply(this, arguments);
+    }
+
+    HeaderView.prototype.events = {
+      "click #sidemenu": "toggleSidebar"
+    };
+
+    HeaderView.prototype.toggleSidebar = function() {
+      console.log("togglingSidebar");
       return $("body").toggleClass("showSidebar");
+    };
+
+    HeaderView.prototype.template = "    \n<ul>\n  <li class=\"menu\">\n    <span id=\"sidemenu\">\n      <a href=\"#side-menu\">\n        <span class=\"icon-reorder\"></span>\n      </a>\n    </span>\n    \n  </li>\n  <li class=\"center-menu\">\n      <span id=\"request\">\n        <a href=\"#\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"messages\">\n        <a href=\"#\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"notifications\">\n        <a href=\"#\">\n        </a>\n      </span>\n    \n  </li>\n  <li class=\"chat\">\n    <span id=\"chat\">\n      <a href=\"#chat\">\n        <span class=\"icon-comments\"></span>\n      </a>\n    </span>\n  </li>\n</ul>\n\n";
+
+    return HeaderView;
+
+  })(Backbone.Marionette.ItemView);
+
+}).call(this);
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  K.Views.Home.Stream = (function(_super) {
+
+    __extends(Stream, _super);
+
+    function Stream() {
+      return Stream.__super__.constructor.apply(this, arguments);
+    }
+
+    Stream.prototype.itemView = K.Views.Home.Item;
+
+    return Stream;
+
+  })(Backbone.Marionette.CollectionView);
+
+}).call(this);
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  K.Views.Landing.Main = (function(_super) {
+
+    __extends(Main, _super);
+
+    function Main() {
+      return Main.__super__.constructor.apply(this, arguments);
+    }
+
+    Main.prototype.id = "landing";
+
+    Main.prototype.template = "<a id=\"login_into_facebook\" href=\"#\">Login</a>";
+
+    Main.prototype.events = {
+      "click #login_into_facebook": "logIntoFacebook"
+    };
+
+    Main.prototype.logIntoFacebook = function() {
+      return FB.login(function(response) {
+        return window.location.hash = "home";
+      }, {
+        scope: 'read_stream'
+      });
+    };
+
+    return Main;
+
+  })(Backbone.Marionette.ItemView);
+
+}).call(this);
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  K.AppRouter = (function(_super) {
+
+    __extends(AppRouter, _super);
+
+    function AppRouter() {
+      return AppRouter.__super__.constructor.apply(this, arguments);
+    }
+
+    AppRouter.prototype.routes = {
+      "home": "home",
+      "landing": "landing",
+      "login": "login"
+    };
+
+    AppRouter.prototype.home = function() {
+      var HomeView;
+      HomeView = new K.Views.Home.Main;
+      return K.app.stageRegion.show(HomeView);
+    };
+
+    AppRouter.prototype.landing = function() {
+      var HomeView;
+      HomeView = new K.Views.Landing.Main;
+      return K.app.stageRegion.show(HomeView);
+    };
+
+    AppRouter.prototype.login = function() {
+      return FB.login(function(response) {
+        return window.location.hash = "home";
+      }, {
+        scope: 'read_stream'
+      });
+    };
+
+    return AppRouter;
+
+  })(Backbone.Router);
+
+}).call(this);
+(function() {
+
+  K.app = new Backbone.Marionette.Application();
+
+  K.app.addRegions({
+    stageRegion: "#stage"
+  });
+
+  K.app.bind("initialize:after", function(options) {
+    new K.AppRouter;
+    Backbone.history.start();
+    window.location.hash = "";
+    return FB.getLoginStatus(function(resp) {
+      if (resp.status === "connected") {
+        return window.location.hash = "home";
+      } else {
+        return window.location.hash = "landing";
+      }
     });
+  });
+
+}).call(this);
+(function() {
+
+  $(document).ready(function() {
+    return K.app.start();
   });
 
 }).call(this);

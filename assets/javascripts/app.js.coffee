@@ -3,7 +3,14 @@
 //= require ./lib/backbone
 //= require ./lib/backbone.marionette
 //= require ./lib/handlebars
+//= require ./patches/marionette
+//= require ./prelude
+//= require ./structure
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routes
+//= require ./application
 
-$(document).ready () ->  
-  $("#sidemenu").click () ->
-    $("body").toggleClass("showSidebar");
+$(document).ready () ->
+  K.app.start();

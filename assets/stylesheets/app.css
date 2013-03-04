@@ -96,7 +96,9 @@ body {
   color: white;
   text-decoration: none;
   height: 2em;
-  line-height: 2em; }
+  line-height: 2em; 
+  width: 2em;
+  display: inline-block;}
 
 #stage #stage-wrapper #main #header a span {
   font-size: 1.5em; }
@@ -173,7 +175,14 @@ body {
   margin: 0;
   padding: 0;
 }
-
+#stage #stage-wrapper #sidebar .user-name img{
+  height: 2em;
+}
+#stage #stage-wrapper #sidebar .user-name span{
+}
+#stage #stage-wrapper #sidebar .user-name {
+  padding:0;
+}
 #stage #stage-wrapper #sidebar ul li {
   margin: 0;
   padding: 0 0 0 6em;
