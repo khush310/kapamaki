@@ -2,17 +2,20 @@ class K.Views.Home.Main extends Backbone.Marionette.Layout
   
   id: "stage-wrapper"
   template: """
-
     <div id= "sidebar"> </div>
-    <div id= 'main'> 
+    <div id= "main"> 
       <div id="header"> </div>
+      <div id="streams">
+        <div id="box">
+        </div>
+      </div>
     </div>
-    <div
   """
   
   regions: 
     sidebarRegion: '#sidebar'
     headerRegion: '#header'
+    mainRegion: '#streams'
 
   onShow: () =>
     console.log "running onSHow"
@@ -25,17 +28,15 @@ class K.Views.Home.Main extends Backbone.Marionette.Layout
       K.currentUser = new Backbone.Model response
       sidebarView = new K.Views.Sidebar({ model: K.currentUser })
       @sidebarRegion.show sidebarView
-
-    console.log "finsihed showing two views in regions"
-###
+    
     FB.api '/me/home', (response) => 
       console.log response
       stream = new K.Stream response.data
       console.log stream
       streamView = new K.Views.Home.Stream collection: stream
       console.log @
-      @streamRegion.show streamView
-###
+      @mainRegion.show streamView
+      console.log "finsihed showing two views in regions"
 
 class K.Views.Sidebar extends Backbone.Marionette.ItemView
 
@@ -126,6 +127,4 @@ class K.Views.HeaderView extends Backbone.Marionette.ItemView
         </span>
       </li>
     </ul>
-
-
   """

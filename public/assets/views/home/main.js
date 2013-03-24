@@ -14,11 +14,12 @@
 
     Main.prototype.id = "stage-wrapper";
 
-    Main.prototype.template = "\n<div id= \"sidebar\"> </div>\n<div id= 'main'> \n  <div id=\"header\"> </div>\n</div>\n<div";
+    Main.prototype.template = "<div id= \"sidebar\"> </div>\n<div id= \"main\"> \n  <div id=\"header\"> </div>\n  <div id=\"streams\">\n    <div id=\"box\">\n    </div>\n  </div>\n</div>";
 
     Main.prototype.regions = {
       sidebarRegion: '#sidebar',
-      headerRegion: '#header'
+      headerRegion: '#header',
+      mainRegion: '#streams'
     };
 
     Main.prototype.onShow = function() {
@@ -36,23 +37,23 @@
         });
         return _this.sidebarRegion.show(sidebarView);
       });
-      return console.log("finsihed showing two views in regions");
+      return FB.api('/me/home', function(response) {
+        var stream, streamView;
+        console.log(response);
+        stream = new K.Stream(response.data);
+        console.log(stream);
+        streamView = new K.Views.Home.Stream({
+          collection: stream
+        });
+        console.log(_this);
+        _this.mainRegion.show(streamView);
+        return console.log("finsihed showing two views in regions");
+      });
     };
 
     return Main;
 
   })(Backbone.Marionette.Layout);
-
-  /*
-      FB.api '/me/home', (response) => 
-        console.log response
-        stream = new K.Stream response.data
-        console.log stream
-        streamView = new K.Views.Home.Stream collection: stream
-        console.log @
-        @streamRegion.show streamView
-  */
-
 
   K.Views.Sidebar = (function(_super) {
 
@@ -91,7 +92,7 @@
       return $("body").toggleClass("showSidebar");
     };
 
-    HeaderView.prototype.template = "    \n<ul>\n  <li class=\"menu\">\n    <span id=\"sidemenu\">\n      <a href=\"#side-menu\">\n        <span class=\"icon-reorder\"></span>\n      </a>\n    </span>\n    \n  </li>\n  <li class=\"center-menu\">\n      <span id=\"request\">\n        <a href=\"#\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"messages\">\n        <a href=\"#\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"notifications\">\n        <a href=\"#\">\n        </a>\n      </span>\n    \n  </li>\n  <li class=\"chat\">\n    <span id=\"chat\">\n      <a href=\"#chat\">\n        <span class=\"icon-comments\"></span>\n      </a>\n    </span>\n  </li>\n</ul>\n\n";
+    HeaderView.prototype.template = "    \n<ul>\n  <li class=\"menu\">\n    <span id=\"sidemenu\">\n      <a href=\"#side-menu\">\n        <span class=\"icon-reorder\"></span>\n      </a>\n    </span>\n    \n  </li>\n  <li class=\"center-menu\">\n      <span id=\"request\">\n        <a href=\"#\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"messages\">\n        <a href=\"#\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"notifications\">\n        <a href=\"#\">\n        </a>\n      </span>\n    \n  </li>\n  <li class=\"chat\">\n    <span id=\"chat\">\n      <a href=\"#chat\">\n        <span class=\"icon-comments\"></span>\n      </a>\n    </span>\n  </li>\n</ul>";
 
     return HeaderView;
 
