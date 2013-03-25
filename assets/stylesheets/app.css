@@ -42,7 +42,8 @@ body {
   padding: 0;
   background-color: #a2aab7; 
   font-size: 100%;
-  font-weight: normal; }
+  font-weight: normal;
+  overflow: hidden; }
 
 #stage {
   height: 100%;
@@ -77,21 +78,31 @@ font-family:  'lucida grande',tahoma,verdana,arial,sans-serif;
   font-family:  'lucida grande',tahoma,verdana,arial,sans-serif;
 }
 
-#stage #stage-wrapper #main #streams .picture{
-  float: left;
-  margin-left: -50px;
+#stage #stage-wrapper #main #streams .remarks{
+  background-color: rgb(224, 223, 223);
+  color: black;
+  height: 30px;
 }
+
+#stage #stage-wrapper #main #streams .header{
+  margin-left: 20px;
+}
+#stage #stage-wrapper #main #streams .header span{
+  color:red;
+}  
 
 #stage #stage-wrapper #main #streams > div > div {
   margin: 10px 10px;
   background: white;
-  padding: 20px 20px 20px 70px;
+  padding: 20px 20px 20px 0px;
   border: 1px solid gray;
 }
 #stage #stage-wrapper #main #streams .content {
-  float: left;
   margin-left: 20px;
   width: 100%;
+  color: black;
+  font-family: Helvetica, sans-serif;
+  font-size: 14px;
 }
 
 #stage #stage-wrapper #main #streams .status {
