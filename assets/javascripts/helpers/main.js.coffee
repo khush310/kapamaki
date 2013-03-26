@@ -22,11 +22,16 @@ Handlebars.registerHelper "comment_count", (count) ->
 Handlebars.registerHelper "format_story", (story , story_tags, from) ->
 	console.log arguments
 	if not story
-		story = """<a href="">#{from.name}</a>"""
+		story = """<strong> <a href="#profile/{from.id}">#{from.name}</a> </strong>"""
 
 	_(story_tags).each (value, key) ->
   	_(value).each (tag) -> # value is the tags array
-    	story = story.replace tag.name, """<a href="">#{tag.name}</a>"""
+    	story = story.replace tag.name, """<strong> <a href="#profile/{tag.id}">#{tag.name}</a> </strong>"""
 	story
+
+Handlebars.registerHelper "format_source", (source) ->
+	a = document.createElement ('a')
+	a.href = source
+	a.hostname
 
 

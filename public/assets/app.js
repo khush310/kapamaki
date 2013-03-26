@@ -14723,11 +14723,11 @@ Handlebars.template = Handlebars.VM.template;
   Handlebars.registerHelper("format_story", function(story, story_tags, from) {
     console.log(arguments);
     if (!story) {
-      story = "<a href=\"\">" + from.name + "</a>";
+      story = "<strong> <a href=\"#profile/{from.id}\">" + from.name + "</a> </strong>";
     }
     _(story_tags).each(function(value, key) {
       return _(value).each(function(tag) {
-        return story = story.replace(tag.name, "<a href=\"\">" + tag.name + "</a>");
+        return story = story.replace(tag.name, "<strong> <a href=\"#profile/{tag.id}\">" + tag.name + "</a> </strong>");
       });
     });
     return story;
@@ -14878,9 +14878,10 @@ if (!window.K) {
     };
 
     Item.prototype.templates = {
-      link: " \n<div class=\"header\">\n  <div class=\"picture\">\n    <span>\n      {{{format_story story story_tags from}}}\n    </span>\n    <a href=\"http://facebook.com/{{from/id}}\">\n      <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n    </a>   \n  </div>\n  <div class=\"content\">\n    <br> </br>{{message}}<br></br>\n  </div>\n  <div class=\"clear\"></div>\n  <div class=\"remarks\">\n    {{like_count likes/count}}  {{comment_count comments/count}}\n  </div>\n</div>",
-      photo: " \n<div class=\"header\">\n  <div class=\"picture\">\n    <a href=\"http://facebook.com/{{from/id}}\"> \n      <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n    </a>  \n    <span>\n      {{{format_story story story_tags from}}} \n    </span>\n  </div>\n</div>\n<div class=\"content\">\n  <div class=\"pic_container\">\n    <a href=\"{{link}}\"> \n      <img src=\"{{make_big picture}}\" />\n    </a>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"remarks\">\n  {{like_count likes/count}}  {{comment_count comments/count}}\n</div>",
-      status: "<div class=\"picture\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>  \n</div>\n<div class=\"status\">\n  <a href=\"http://facebook.com/{{from/id}}\"> {{from/name}} </a>\n <br></br>{{message}}<br></br>\n</div>\n<div class=\"clear\"></div>\n<div class=\"remarks\">\n  {{like_count likes/count}}  {{comment_count comments/count}}\n</div>"
+      video: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n  </h4>\n</div>\n<div class=\"content\">\n  <p> {{name}} </p>\n  <div class=\"video\">\n      <img class=\"pic\" src=\"{{picture}}\" />\n      <div class=\"description\">\n        <h4> {{name}} </h4>\n        {{format_source link}}\n      </div> \n  </div>\n</div>      \n<div class=\"clear\"> </div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      link: " \n<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\">\n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}}\n  </h4>\n</div>\n<div class=\"content\">\n  <p>{{message}}</p>\n  <div class=\"link\">\n    <img class=\"pic\" src=\"{{picture}}\" />\n    <div class=\"description\">\n      <h4>{{name}}</h4>\n      <p>{{description}}</p>\n    </div>\n    <div class=\"clear\"></div>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      photo: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n  </h4>\n</div> \n<div class=\"content\">\n    <p>{{message}}</p>\n  <div class=\"pic_container\">\n    <a href=\"{{link}}\"> \n      <img src=\"{{make_big picture}}\" />\n    </a>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      status: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n      {{{format_story story story_tags from}}} \n  </h4>\n</div>\n<div class=\"status\">\n  <p>{{message}}</p>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}}\n  &nbsp;&nbsp;\n  {{comment_count comments/count}}\n</div>"
     };
 
     return Item;
@@ -15047,6 +15048,11 @@ if (!window.K) {
 
 }).call(this);
 (function() {
+
+
+
+}).call(this);
+(function() {
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -15061,19 +15067,20 @@ if (!window.K) {
     AppRouter.prototype.routes = {
       "home": "home",
       "landing": "landing",
-      "login": "login"
+      "login": "login",
+      "profile/:id": "profile"
     };
 
     AppRouter.prototype.home = function() {
-      var HomeView;
-      HomeView = new K.Views.Home.Main;
-      return K.app.stageRegion.show(HomeView);
+      var homeView;
+      homeView = new K.Views.Home.Main;
+      return K.app.stageRegion.show(homeView);
     };
 
     AppRouter.prototype.landing = function() {
-      var HomeView;
-      HomeView = new K.Views.Landing.Main;
-      return K.app.stageRegion.show(HomeView);
+      var landingView;
+      landingView = new K.Views.Landing.Main;
+      return K.app.stageRegion.show(landingView);
     };
 
     AppRouter.prototype.login = function() {
@@ -15082,6 +15089,12 @@ if (!window.K) {
       }, {
         scope: 'read_stream'
       });
+    };
+
+    AppRouter.prototype.profile = function() {
+      var profileView;
+      profileView = new K.Views.Profile.Main;
+      return K.app.stageRegion.show(profileView);
     };
 
     return AppRouter;

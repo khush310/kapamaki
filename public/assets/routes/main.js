@@ -13,19 +13,20 @@
     AppRouter.prototype.routes = {
       "home": "home",
       "landing": "landing",
-      "login": "login"
+      "login": "login",
+      "profile/:id": "profile"
     };
 
     AppRouter.prototype.home = function() {
-      var HomeView;
-      HomeView = new K.Views.Home.Main;
-      return K.app.stageRegion.show(HomeView);
+      var homeView;
+      homeView = new K.Views.Home.Main;
+      return K.app.stageRegion.show(homeView);
     };
 
     AppRouter.prototype.landing = function() {
-      var HomeView;
-      HomeView = new K.Views.Landing.Main;
-      return K.app.stageRegion.show(HomeView);
+      var landingView;
+      landingView = new K.Views.Landing.Main;
+      return K.app.stageRegion.show(landingView);
     };
 
     AppRouter.prototype.login = function() {
@@ -34,6 +35,12 @@
       }, {
         scope: 'read_stream'
       });
+    };
+
+    AppRouter.prototype.profile = function() {
+      var profileView;
+      profileView = new K.Views.Profile.Main;
+      return K.app.stageRegion.show(profileView);
     };
 
     return AppRouter;

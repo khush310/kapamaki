@@ -29,11 +29,11 @@
   Handlebars.registerHelper("format_story", function(story, story_tags, from) {
     console.log(arguments);
     if (!story) {
-      story = "<a href=\"\">" + from.name + "</a>";
+      story = "<strong> <a href=\"#profile/{from.id}\">" + from.name + "</a> </strong>";
     }
     _(story_tags).each(function(value, key) {
       return _(value).each(function(tag) {
-        return story = story.replace(tag.name, "<a href=\"\">" + tag.name + "</a>");
+        return story = story.replace(tag.name, "<strong> <a href=\"#profile/{tag.id}\">" + tag.name + "</a> </strong>");
       });
     });
     return story;

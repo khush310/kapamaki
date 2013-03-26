@@ -3,14 +3,15 @@ class K.AppRouter extends Backbone.Router
     "home": "home"
     "landing": "landing"
     "login": "login"
+    "profile/:id": "profile"
 
   home: () ->
-    HomeView = new K.Views.Home.Main
-    K.app.stageRegion.show HomeView
+    homeView = new K.Views.Home.Main
+    K.app.stageRegion.show homeView
 
   landing: () ->
-    HomeView = new K.Views.Landing.Main
-    K.app.stageRegion.show HomeView
+    landingView = new K.Views.Landing.Main
+    K.app.stageRegion.show landingView
   
   login: () ->
     FB.login(
@@ -18,3 +19,7 @@ class K.AppRouter extends Backbone.Router
         window.location.hash = "home"
       {scope: 'read_stream'}
     )
+
+  profile:() ->
+    profileView = new K.Views.Profile.Main
+    K.app.stageRegion.show profileView

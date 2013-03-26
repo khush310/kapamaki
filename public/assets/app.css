@@ -1037,12 +1037,14 @@ ul.icons {
   -webkit-user-drag: none; }
 
 html, body{
-  height: 100%; }
+  height: 100%; 
+  -webkit-text-size-adjust: none;
+}
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #a2aab7; 
+  background-color: #c4cde0; 
   font-size: 100%;
   font-weight: normal;
   overflow: hidden; }
@@ -1079,15 +1081,50 @@ font-family:  'lucida grande',tahoma,verdana,arial,sans-serif;
   padding: 10px 0;
   font-family:  'lucida grande',tahoma,verdana,arial,sans-serif;
 }
-
-#stage #stage-wrapper #main #streams .remarks{
-  background-color: rgb(224, 223, 223);
-  color: black;
-  height: 30px;
+#stage #stage-wrapper #main #streams .link{
+  background-color: #f3f4f7;
+  border: 1px solid rgb(197, 202, 221);
+  margin-right: 20px;
+  padding-left: 170px;
+}
+#stage #stage-wrapper #main #streams .video{
+  background-color: #f3f4f7;
+  border: 1px solid rgb(197, 202, 221);
+  margin-right: 20px;
+  padding-left: 170px;
 }
 
-#stage #stage-wrapper #main #streams .header{
-  margin-left: 20px;
+#stage #stage-wrapper #main #streams .link img{
+padding: 10px 0 10px 0;
+}
+
+#stage #stage-wrapper #main #streams .video img{
+padding: 10px 0 10px 0;
+max-width: 150px;
+margin-left: -150px;
+display: block;
+}
+
+#stage #stage-wrapper #main #streams .content > div img.pic{
+  display: block;
+  float: left;
+  max-width: 150px;
+  margin-left: -150px;
+}
+#stage #stage-wrapper #main #streams .description{
+  float: left;
+}
+
+#stage #stage-wrapper #main #streams .box{
+  background-color: #eff2f5;
+  height: 50px;
+  margin: 20px -20px 0 0;
+  padding: 15px 0 0 20px;
+  color: #9b9b9b;
+  border-top: 1px solid rgb(197, 202, 221);
+  font-weight: normal;
+  font-size: 14px;
+  font-family: Helvetica, sans-serif;
 }
 #stage #stage-wrapper #main #streams .header span{
   color:red;
@@ -1096,11 +1133,14 @@ font-family:  'lucida grande',tahoma,verdana,arial,sans-serif;
 #stage #stage-wrapper #main #streams > div > div {
   margin: 10px 10px;
   background: white;
-  padding: 20px 20px 20px 0px;
-  border: 1px solid gray;
+  padding: 20px 20px 0px 0px;
+  border-width: 1px 1px 2.5px;
+  border-style: solid;
+  border-color: rgba(40, 70, 129, 0.43);
 }
 #stage #stage-wrapper #main #streams .content {
   margin-left: 20px;
+  margin-top: 25px;
   width: 100%;
   color: black;
   font-family: Helvetica, sans-serif;
@@ -1112,14 +1152,42 @@ font-family:  'lucida grande',tahoma,verdana,arial,sans-serif;
   margin-left: 20px;
   width: 100%;
   color: black;
+  padding-top: 15px;
 }
+#stage #stage-wrapper #main #streams p{
+  font-size: 14px;
+  font-family: Helvetica, sans-serif;
+  line-height: 1.8;
+  padding-top: 30px;
+  padding-right: 15px;
+  margin-top: -10px;
+}
+
 #stage #stage-wrapper #main #streams .pic_container{
   text-align: center;
 }
+#stage #stage-wrapper #main #streams .title h4{
+  margin: -55px 0 0 65px;
+  font-weight: normal;
+  padding-top: 5px;
+}
+#stage #stage-wrapper #main #streams .link h4{
+  color: #3e4350;
+  padding: 0px 8px 8px 12px;
+  line-height: 2.5;
+  font-size: 12px;
+
+}
+
+#stage #stage-wrapper #main #streams .title {
+  padding: 0 0 0 20px;
+}
+
 #stage #stage-wrapper #main #streams .content > div img{
-  margin: 20px 0;
+  margin: 10px 0;
   max-width: 100%;
 }
+
 #stage #stage-wrapper #main #header {
   background: -webkit-gradient(linear, center top, center bottom, from(#738aba), to(#2c4987));
   -webkit-box-shadow: inset 0 1px 1px -1px #fff;
