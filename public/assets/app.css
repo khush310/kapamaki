@@ -1094,6 +1094,7 @@ font-family:  'lucida grande',tahoma,verdana,arial,sans-serif;
   padding-left: 170px;
 }
 
+
 #stage #stage-wrapper #main #streams .link img{
 padding: 10px 0 10px 0;
 }
@@ -1115,6 +1116,12 @@ display: block;
   float: left;
 }
 
+#stage #stage-wrapper #main #streams .description p{
+  margin-top: -50px;
+  padding-left: 10px;
+}
+
+
 #stage #stage-wrapper #main #streams .box{
   background-color: #eff2f5;
   height: 50px;
@@ -1130,7 +1137,7 @@ display: block;
   color:red;
 }  
 
-#stage #stage-wrapper #main #streams > div > div {
+#stage #stage-wrapper #main #streams div.listcontainer > div {
   margin: 10px 10px;
   background: white;
   padding: 20px 20px 0px 0px;
@@ -1161,16 +1168,22 @@ display: block;
   padding-top: 30px;
   padding-right: 15px;
   margin-top: -10px;
+  margin-bottom: -10px;
 }
 
 #stage #stage-wrapper #main #streams .pic_container{
   text-align: center;
 }
 #stage #stage-wrapper #main #streams .title h4{
-  margin: -55px 0 0 65px;
+  margin: -55px 0 -25px 65px;
   font-weight: normal;
   padding-top: 5px;
 }
+#stage #stage-wrapper #main #streams .title .timeago{
+  padding-left: 67px;
+}
+
+
 #stage #stage-wrapper #main #streams .link h4{
   color: #3e4350;
   padding: 0px 8px 8px 12px;
@@ -1306,10 +1319,8 @@ display: block;
 #stage #stage-wrapper #sidebar .user-name img{
   height: 2em;
 }
-#stage #stage-wrapper #sidebar .user-name span{
-}
 #stage #stage-wrapper #sidebar .user-name {
-  padding:0;
+  padding-left:50px;
 }
 #stage #stage-wrapper #sidebar ul li {
   margin: 0;

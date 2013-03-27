@@ -39,4 +39,11 @@
     return story;
   });
 
+  Handlebars.registerHelper("format_source", function(source) {
+    var a;
+    a = document.createElement('a');
+    a.href = source;
+    return a.hostname;
+  });
+
 }).call(this);

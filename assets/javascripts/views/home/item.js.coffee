@@ -9,7 +9,9 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </a> 
           <h4>
             {{{format_story story story_tags from}}} 
+            <abbr class="timeago" title="{{updated_time}}"> </abbr>
           </h4>
+          <p>  </p>
         </div>
         <div class="content">
           <p> {{name}} </p>
@@ -35,17 +37,22 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           <h4>
             {{{format_story story story_tags from}}}
           </h4>
+          <p> <abbr class="timeago" title="{{updated_time}}"> </abbr> </p>
         </div>
         <div class="content">
           <p>{{message}}</p>
+          {{#if name}}
           <div class="link">
             <img class="pic" src="{{picture}}" />
             <div class="description">
-              <h4>{{name}}</h4>
-              <p>{{description}}</p>
+              <div class="description_container">
+                <h4>{{name}}</h4>
+                <p>{{description}}</p>
+              </div>
             </div>
             <div class="clear"></div>
           </div>
+          {{/if}}
         </div>
         <div class="clear"></div>
         <div class="box">
@@ -60,6 +67,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           <h4>
             {{{format_story story story_tags from}}} 
           </h4>
+          <p> <abbr class="timeago" title="{{updated_time}}"> </abbr> </p>
         </div> 
         <div class="content">
             <p>{{message}}</p>
@@ -82,6 +90,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
         <h4>
             {{{format_story story story_tags from}}} 
         </h4>
+        <p> <abbr class="timeago" title="{{updated_time}}"> </abbr> </p>
       </div>
       <div class="status">
         <p>{{message}}</p>
@@ -93,4 +102,5 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
         {{comment_count comments/count}}
       </div>
     """
-
+  onShow: ( ) =>
+    jQuery("abbr.timeago").timeago();
