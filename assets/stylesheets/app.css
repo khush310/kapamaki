@@ -1,3 +1,4 @@
+
 /*= require_tree . */
 
 @media (min-width: 700px)  { 
@@ -176,6 +177,11 @@ display: block;
   font-weight: normal;
   padding-top: 5px;
 }
+
+#stage #stage-wrapper #main #streams .title .timeago{
+  padding-left: 67px;
+}
+
 #stage #stage-wrapper #main #streams .link h4{
   color: #3e4350;
   padding: 0px 8px 8px 12px;
@@ -311,11 +317,7 @@ display: block;
 #stage #stage-wrapper #sidebar .user-name img{
   height: 2em;
 }
-#stage #stage-wrapper #sidebar .user-name span{
-}
-#stage #stage-wrapper #sidebar .user-name {
-  padding:0;
-}
+
 #stage #stage-wrapper #sidebar ul li {
   margin: 0;
   padding: 0 0 0 6em;
@@ -349,19 +351,11 @@ display: block;
   background: -webkit-linear-gradient(#414a5a, #4c5464);
   -webkit-box-shadow: inset 0 1px 2px -1px rgba(0,0,0,0.5),0 1px 2px -1px rgba(255,255,255,0.4);
   color: #b3b3b3;
-  padding-left: 4px;
+  padding-left: 20px;
   padding-bottom: 2px;
   outline: none;
+  font-size: 16px;
 }
-
-#stage #stage-wrapper #sidebar ul li span {
-  font-size: 18px; 
-  text-shadow: 0 1px 0 rgba(0 0 0 0.6);
-  line-height: 2.5em;
-  height: 2.5em;
-  color: rgb(167, 175, 189);
-  width: 10%;
-  }
 
 #stage #stage-wrapper #sidebar .news-feeds {
   background-image: url(http://fb.html5isready.com/images/menu-newsfeed.png);
@@ -388,7 +382,6 @@ display: block;
   text-decoration: none;
   display: inline-block;
   font-size: 18px; 
-  text-shadow: 0 1px 0 rgba(0 0 0 0.6);
   line-height: 2.5em;
   height: 2.5em;
   color: rgb(167, 175, 189);

@@ -9,6 +9,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </a> 
           <h4>
             {{{format_story story story_tags from}}} 
+            <abbr class="timeago" title="{{updated_time}}"> {{updated_time}} </abbr>
           </h4>
         </div>
         <div class="content">
@@ -34,6 +35,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </a>
           <h4>
             {{{format_story story story_tags from}}}
+            <abbr class="timeago" title="{{updated_time}}"> {{updated_time}}</abbr>
           </h4>
         </div>
         <div class="content">
@@ -59,6 +61,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </a> 
           <h4>
             {{{format_story story story_tags from}}} 
+            <abbr class="timeago" title="{{updated_time}}"> {{updated_time}}</abbr>
           </h4>
         </div> 
         <div class="content">
@@ -80,7 +83,8 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           <img src="http://graph.facebook.com/{{from/id}}/picture" />
         </a>
         <h4>
-            {{{format_story story story_tags from}}} 
+          {{{format_story story story_tags from}}} 
+          <abbr class="timeago" title="{{updated_time}}"> {{updated_time }} </abbr>
         </h4>
       </div>
       <div class="status">
@@ -93,4 +97,8 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
         {{comment_count comments/count}}
       </div>
     """
+  onShow: ( ) =>
+    jQuery("abbr.timeago").timeago();
+
+
 

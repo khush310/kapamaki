@@ -3,6 +3,7 @@
 //= require ./lib/backbone
 //= require ./lib/backbone.marionette
 //= require ./lib/handlebars
+//= require ./lib/jquery.timeago
 //= require_tree ./helpers
 //= require ./patches/marionette
 //= require ./prelude

@@ -29,14 +29,15 @@ class K.Views.Home.Main extends Backbone.Marionette.Layout
       sidebarView = new K.Views.Sidebar({ model: K.currentUser })
       @sidebarRegion.show sidebarView
     
-    FB.api '/me/home', (response) => 
-      console.log response
-      stream = new K.Stream response.data
+  
+      stream = new K.Stream 
       console.log stream
       streamView = new K.Views.Home.Stream collection: stream
       console.log @
       @mainRegion.show streamView
       console.log "finsihed showing two views in regions"
+      stream.loadNextPage()
+      window.a = stream
 
 class K.Views.Sidebar extends Backbone.Marionette.ItemView
 
@@ -45,10 +46,7 @@ class K.Views.Sidebar extends Backbone.Marionette.ItemView
       <li class="search">
         <input type="text" placeholder="Search" />
       </li>
-      <li class="user-name">
-        <span>
-          <img src="http://graph.facebook.com/{{id}}/picture" />
-        </span>
+      <li class="user-name" style="background-image: url(http://graph.facebook.com/{{id}}/picture)">
         <a href="#image"> {{ name }}  </a>
       </li>
       <li class="news-feeds">

@@ -14692,6 +14692,188 @@ Handlebars.VM = {
 
 Handlebars.template = Handlebars.VM.template;
 ;
+/**
+ * Timeago is a jQuery plugin that makes it easy to support automatically
+ * updating fuzzy timestamps (e.g. "4 minutes ago" or "about 1 day ago").
+ *
+ * @name timeago
+ * @version 1.1.0
+ * @requires jQuery v1.2.3+
+ * @author Ryan McGeary
+ * @license MIT License - http://www.opensource.org/licenses/mit-license.php
+ *
+ * For usage and examples, visit:
+ * http://timeago.yarp.com/
+ *
+ * Copyright (c) 2008-2013, Ryan McGeary (ryan -[at]- mcgeary [*dot*] org)
+ */
+
+
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['jquery'], factory);
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+}(function ($) {
+  $.timeago = function(timestamp) {
+    if (timestamp instanceof Date) {
+      return inWords(timestamp);
+    } else if (typeof timestamp === "string") {
+      return inWords($.timeago.parse(timestamp));
+    } else if (typeof timestamp === "number") {
+      return inWords(new Date(timestamp));
+    } else {
+      return inWords($.timeago.datetime(timestamp));
+    }
+  };
+  var $t = $.timeago;
+
+  $.extend($.timeago, {
+    settings: {
+      refreshMillis: 60000,
+      allowFuture: false,
+      strings: {
+        prefixAgo: null,
+        prefixFromNow: null,
+        suffixAgo: "ago",
+        suffixFromNow: "from now",
+        seconds: "less than a minute",
+        minute: "about a minute",
+        minutes: "%d minutes",
+        hour: "about an hour",
+        hours: "about %d hours",
+        day: "a day",
+        days: "%d days",
+        month: "about a month",
+        months: "%d months",
+        year: "about a year",
+        years: "%d years",
+        wordSeparator: " ",
+        numbers: []
+      }
+    },
+    inWords: function(distanceMillis) {
+      var $l = this.settings.strings;
+      var prefix = $l.prefixAgo;
+      var suffix = $l.suffixAgo;
+      if (this.settings.allowFuture) {
+        if (distanceMillis < 0) {
+          prefix = $l.prefixFromNow;
+          suffix = $l.suffixFromNow;
+        }
+      }
+
+      var seconds = Math.abs(distanceMillis) / 1000;
+      var minutes = seconds / 60;
+      var hours = minutes / 60;
+      var days = hours / 24;
+      var years = days / 365;
+
+      function substitute(stringOrFunction, number) {
+        var string = $.isFunction(stringOrFunction) ? stringOrFunction(number, distanceMillis) : stringOrFunction;
+        var value = ($l.numbers && $l.numbers[number]) || number;
+        return string.replace(/%d/i, value);
+      }
+
+      var words = seconds < 45 && substitute($l.seconds, Math.round(seconds)) ||
+        seconds < 90 && substitute($l.minute, 1) ||
+        minutes < 45 && substitute($l.minutes, Math.round(minutes)) ||
+        minutes < 90 && substitute($l.hour, 1) ||
+        hours < 24 && substitute($l.hours, Math.round(hours)) ||
+        hours < 42 && substitute($l.day, 1) ||
+        days < 30 && substitute($l.days, Math.round(days)) ||
+        days < 45 && substitute($l.month, 1) ||
+        days < 365 && substitute($l.months, Math.round(days / 30)) ||
+        years < 1.5 && substitute($l.year, 1) ||
+        substitute($l.years, Math.round(years));
+
+      var separator = $l.wordSeparator || "";
+      if ($l.wordSeparator === undefined) { separator = " "; }
+      return $.trim([prefix, words, suffix].join(separator));
+    },
+    parse: function(iso8601) {
+      var s = $.trim(iso8601);
+      s = s.replace(/\.\d+/,""); // remove milliseconds
+      s = s.replace(/-/,"/").replace(/-/,"/");
+      s = s.replace(/T/," ").replace(/Z/," UTC");
+      s = s.replace(/([\+\-]\d\d)\:?(\d\d)/," $1$2"); // -04:00 -> -0400
+      return new Date(s);
+    },
+    datetime: function(elem) {
+      var iso8601 = $t.isTime(elem) ? $(elem).attr("datetime") : $(elem).attr("title");
+      return $t.parse(iso8601);
+    },
+    isTime: function(elem) {
+      // jQuery's `is()` doesn't play well with HTML5 in IE
+      return $(elem).get(0).tagName.toLowerCase() === "time"; // $(elem).is("time");
+    }
+  });
+
+  // functions that can be called via $(el).timeago('action')
+  // init is default when no action is given
+  // functions are called with context of a single element
+  var functions = {
+    init: function(){
+      var refresh_el = $.proxy(refresh, this);
+      refresh_el();
+      var $s = $t.settings;
+      if ($s.refreshMillis > 0) {
+        setInterval(refresh_el, $s.refreshMillis);
+      }
+    },
+    update: function(time){
+      $(this).data('timeago', { datetime: $t.parse(time) });
+      refresh.apply(this);
+    }
+  };
+
+  $.fn.timeago = function(action, options) {
+    var fn = action ? functions[action] : functions.init;
+    if(!fn){
+      throw new Error("Unknown function name '"+ action +"' for timeago");
+    }
+    // each over objects here and call the requested function
+    this.each(function(){
+      fn.call(this, options);
+    });
+    return this;
+  };
+
+  function refresh() {
+    var data = prepareData(this);
+    if (!isNaN(data.datetime)) {
+      $(this).text(inWords(data.datetime));
+    }
+    return this;
+  }
+
+  function prepareData(element) {
+    element = $(element);
+    if (!element.data("timeago")) {
+      element.data("timeago", { datetime: $t.datetime(element) });
+      var text = $.trim(element.text());
+      if (text.length > 0 && !($t.isTime(element) && element.attr("title"))) {
+        element.attr("title", text);
+      }
+    }
+    return element.data("timeago");
+  }
+
+  function inWords(date) {
+    return $t.inWords(distance(date));
+  }
+
+  function distance(date) {
+    return (new Date().getTime() - date.getTime());
+  }
+
+  // fix for IE6 suckage
+  document.createElement("abbr");
+  document.createElement("time");
+}));
 (function() {
 
   Handlebars.registerHelper("make_big", function(pic_url) {
@@ -14731,6 +14913,13 @@ Handlebars.template = Handlebars.VM.template;
       });
     });
     return story;
+  });
+
+  Handlebars.registerHelper("format_source", function(source) {
+    var a;
+    a = document.createElement('a');
+    a.href = source;
+    return a.hostname;
   });
 
 }).call(this);
@@ -14843,7 +15032,8 @@ if (!window.K) {
 
 }).call(this);
 (function() {
-  var __hasProp = {}.hasOwnProperty,
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   K.Stream = (function(_super) {
@@ -14851,8 +15041,21 @@ if (!window.K) {
     __extends(Stream, _super);
 
     function Stream() {
+      this.loadNextPage = __bind(this.loadNextPage, this);
       return Stream.__super__.constructor.apply(this, arguments);
     }
+
+    Stream.prototype.loadNextPage = function() {
+      var _this = this;
+      return FB.api('/me/home', {
+        until: this.until
+      }, function(response) {
+        console.log(response.paging);
+        console.log(response.data);
+        _this.add(response.data);
+        return _this.until = response.paging.next.match(/until=(.*)/)[1];
+      });
+    };
 
     return Stream;
 
@@ -14869,6 +15072,8 @@ if (!window.K) {
     __extends(Item, _super);
 
     function Item() {
+      this.onShow = __bind(this.onShow, this);
+
       this.template = __bind(this.template, this);
       return Item.__super__.constructor.apply(this, arguments);
     }
@@ -14878,10 +15083,14 @@ if (!window.K) {
     };
 
     Item.prototype.templates = {
-      video: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n  </h4>\n</div>\n<div class=\"content\">\n  <p> {{name}} </p>\n  <div class=\"video\">\n      <img class=\"pic\" src=\"{{picture}}\" />\n      <div class=\"description\">\n        <h4> {{name}} </h4>\n        {{format_source link}}\n      </div> \n  </div>\n</div>      \n<div class=\"clear\"> </div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
-      link: " \n<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\">\n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}}\n  </h4>\n</div>\n<div class=\"content\">\n  <p>{{message}}</p>\n  <div class=\"link\">\n    <img class=\"pic\" src=\"{{picture}}\" />\n    <div class=\"description\">\n      <h4>{{name}}</h4>\n      <p>{{description}}</p>\n    </div>\n    <div class=\"clear\"></div>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
-      photo: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n  </h4>\n</div> \n<div class=\"content\">\n    <p>{{message}}</p>\n  <div class=\"pic_container\">\n    <a href=\"{{link}}\"> \n      <img src=\"{{make_big picture}}\" />\n    </a>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
-      status: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n      {{{format_story story story_tags from}}} \n  </h4>\n</div>\n<div class=\"status\">\n  <p>{{message}}</p>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}}\n  &nbsp;&nbsp;\n  {{comment_count comments/count}}\n</div>"
+      video: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n    <abbr class=\"timeago\" title=\"{{updated_time}}\"> {{updated_time}} </abbr>\n  </h4>\n</div>\n<div class=\"content\">\n  <p> {{name}} </p>\n  <div class=\"video\">\n      <img class=\"pic\" src=\"{{picture}}\" />\n      <div class=\"description\">\n        <h4> {{name}} </h4>\n        {{format_source link}}\n      </div>\n      <div class=\"clear\"> </div> \n  </div>\n</div>      \n<div class=\"clear\"> </div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      link: " \n<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\">\n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}}\n    <abbr class=\"timeago\" title=\"{{updated_time}}\"> {{updated_time}}</abbr>\n  </h4>\n</div>\n<div class=\"content\">\n  <p>{{message}}</p>\n  <div class=\"link\">\n    <img class=\"pic\" src=\"{{picture}}\" />\n    <div class=\"description\">\n      <h4>{{name}}</h4>\n      <p>{{description}}</p>\n    </div>\n    <div class=\"clear\"></div>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      photo: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n    <abbr class=\"timeago\" title=\"{{updated_time}}\"> {{updated_time}}</abbr>\n  </h4>\n</div> \n<div class=\"content\">\n    <p>{{message}}</p>\n  <div class=\"pic_container\">\n    <a href=\"{{link}}\"> \n      <img src=\"{{make_big picture}}\" />\n    </a>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      status: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}} \n    <abbr class=\"timeago\" title=\"{{updated_time}}\"> {{updated_time }} </abbr>\n  </h4>\n</div>\n<div class=\"status\">\n  <p>{{message}}</p>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}}\n  &nbsp;&nbsp;\n  {{comment_count comments/count}}\n</div>"
+    };
+
+    Item.prototype.onShow = function() {
+      return jQuery("abbr.timeago").timeago();
     };
 
     return Item;
@@ -14924,26 +15133,24 @@ if (!window.K) {
       console.log("running onSHow");
       headerView = new K.Views.HeaderView;
       this.headerRegion.show(headerView);
-      FB.api('/me', function(response) {
-        var sidebarView;
+      return FB.api('/me', function(response) {
+        var sidebarView, stream, streamView;
         console.log(response);
         K.currentUser = new Backbone.Model(response);
         sidebarView = new K.Views.Sidebar({
           model: K.currentUser
         });
-        return _this.sidebarRegion.show(sidebarView);
-      });
-      return FB.api('/me/home', function(response) {
-        var stream, streamView;
-        console.log(response);
-        stream = new K.Stream(response.data);
+        _this.sidebarRegion.show(sidebarView);
+        stream = new K.Stream;
         console.log(stream);
         streamView = new K.Views.Home.Stream({
           collection: stream
         });
         console.log(_this);
         _this.mainRegion.show(streamView);
-        return console.log("finsihed showing two views in regions");
+        console.log("finsihed showing two views in regions");
+        stream.loadNextPage();
+        return window.a = stream;
       });
     };
 
@@ -14960,7 +15167,7 @@ if (!window.K) {
       return Sidebar.__super__.constructor.apply(this, arguments);
     }
 
-    Sidebar.prototype.template = "<ul>\n  <li class=\"search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\">\n    <span>\n      <img src=\"http://graph.facebook.com/{{id}}/picture\" />\n    </span>\n    <a href=\"#image\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"messages\">\n      <a href=\"#\">\n        Messages\n      </a>\n  </li>\n  <li class=\"events\">\n      <a href=\"#\">\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a href=\"#\">\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a href=\"#\">\n        Log Out\n      </a>\n  </li>\n</ul>";
+    Sidebar.prototype.template = "<ul>\n  <li class=\"search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a href=\"#image\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"messages\">\n      <a href=\"#\">\n        Messages\n      </a>\n  </li>\n  <li class=\"events\">\n      <a href=\"#\">\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a href=\"#\">\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a href=\"#\">\n        Log Out\n      </a>\n  </li>\n</ul>";
 
     Sidebar.prototype.onShow = function() {
       return console.log(this.model);
@@ -14996,7 +15203,8 @@ if (!window.K) {
 
 }).call(this);
 (function() {
-  var __hasProp = {}.hasOwnProperty,
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   K.Views.Home.Stream = (function(_super) {
@@ -15004,14 +15212,29 @@ if (!window.K) {
     __extends(Stream, _super);
 
     function Stream() {
+      this.loadNextPage = __bind(this.loadNextPage, this);
       return Stream.__super__.constructor.apply(this, arguments);
     }
 
     Stream.prototype.itemView = K.Views.Home.Item;
 
+    Stream.prototype.template = "<div class=\"listcontainer\">\n</div>\n<div class=\"paging\">\n  <a href=\" \"> NextPage </a>\n</div>";
+
+    Stream.prototype.events = {
+      "click .paging a": "loadNextPage"
+    };
+
+    Stream.prototype.loadNextPage = function(e) {
+      e.preventDefault();
+      this.collection.loadNextPage();
+      return humane.log("loading next page");
+    };
+
+    Stream.prototype.itemViewContainer = ".listcontainer";
+
     return Stream;
 
-  })(Backbone.Marionette.CollectionView);
+  })(Backbone.Marionette.CompositeView);
 
 }).call(this);
 (function() {
