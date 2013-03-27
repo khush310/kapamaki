@@ -28,24 +28,26 @@
       console.log("running onSHow");
       headerView = new K.Views.HeaderView;
       this.headerRegion.show(headerView);
-      return FB.api('/me', function(response) {
-        var sidebarView, stream, streamView;
+      FB.api('/me', function(response) {
+        var sidebarView;
         console.log(response);
         K.currentUser = new Backbone.Model(response);
         sidebarView = new K.Views.Sidebar({
           model: K.currentUser
         });
-        _this.sidebarRegion.show(sidebarView);
-        stream = new K.Stream;
+        return _this.sidebarRegion.show(sidebarView);
+      });
+      return FB.api('/me/home', function(response) {
+        var stream, streamView;
+        console.log(response);
+        stream = new K.Stream(response.data);
         console.log(stream);
         streamView = new K.Views.Home.Stream({
           collection: stream
         });
         console.log(_this);
         _this.mainRegion.show(streamView);
-        console.log("finsihed showing two views in regions");
-        stream.loadNextPage();
-        return window.a = stream;
+        return console.log("finsihed showing two views in regions");
       });
     };
 
@@ -62,7 +64,7 @@
       return Sidebar.__super__.constructor.apply(this, arguments);
     }
 
-    Sidebar.prototype.template = "<ul>\n  <li class=\"search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a href=\"#image\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"messages\">\n      <a href=\"#\">\n        Messages\n      </a>\n  </li>\n  <li class=\"events\">\n      <a href=\"#\">\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a href=\"#\">\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a href=\"#\">\n        Log Out\n      </a>\n  </li>\n</ul>";
+    Sidebar.prototype.template = "<ul>\n  <li class=\"search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\">\n    <span>\n      <img src=\"http://graph.facebook.com/{{id}}/picture\" />\n    </span>\n    <a href=\"#image\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"messages\">\n      <a href=\"#\">\n        Messages\n      </a>\n  </li>\n  <li class=\"events\">\n      <a href=\"#\">\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a href=\"#\">\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a href=\"#\">\n        Log Out\n      </a>\n  </li>\n</ul>";
 
     Sidebar.prototype.onShow = function() {
       return console.log(this.model);

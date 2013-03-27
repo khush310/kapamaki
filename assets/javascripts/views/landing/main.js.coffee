@@ -3,8 +3,6 @@ class K.Views.Landing.Main extends Backbone.Marionette.ItemView
   id: "landing"
   template: """
     <a id="login_into_facebook" href="#">Login</a>
-  
-
   """
   events:
     "click #login_into_facebook": "logIntoFacebook"

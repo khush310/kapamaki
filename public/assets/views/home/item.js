@@ -8,8 +8,6 @@
     __extends(Item, _super);
 
     function Item() {
-      this.onShow = __bind(this.onShow, this);
-
       this.template = __bind(this.template, this);
       return Item.__super__.constructor.apply(this, arguments);
     }
@@ -19,14 +17,10 @@
     };
 
     Item.prototype.templates = {
-      video: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n    <abbr class=\"timeago\" title=\"{{updated_time}}\"> </abbr>\n  </h4>\n  <p>  </p>\n</div>\n<div class=\"content\">\n  <p> {{name}} </p>\n  <div class=\"video\">\n      <img class=\"pic\" src=\"{{picture}}\" />\n      <div class=\"description\">\n        <h4> {{name}} </h4>\n        {{format_source link}}\n      </div>\n      <div class=\"clear\"> </div> \n  </div>\n</div>      \n<div class=\"clear\"> </div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
-      link: " \n<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\">\n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}}\n  </h4>\n  <p> <abbr class=\"timeago\" title=\"{{updated_time}}\"> </abbr> </p>\n</div>\n<div class=\"content\">\n  <p>{{message}}</p>\n  <div class=\"link\">\n    <img class=\"pic\" src=\"{{picture}}\" />\n    <div class=\"description\">\n      <h4>{{name}}</h4>\n      <p>{{description}}</p>\n    </div>\n    <div class=\"clear\"></div>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
-      photo: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n  </h4>\n  <p> <abbr class=\"timeago\" title=\"{{updated_time}}\"> </abbr> </p>\n</div> \n<div class=\"content\">\n    <p>{{message}}</p>\n  <div class=\"pic_container\">\n    <a href=\"{{link}}\"> \n      <img src=\"{{make_big picture}}\" />\n    </a>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
-      status: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n      {{{format_story story story_tags from}}} \n  </h4>\n  <p> <abbr class=\"timeago\" title=\"{{updated_time}}\"> </abbr> </p>\n</div>\n<div class=\"status\">\n  <p>{{message}}</p>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}}\n  &nbsp;&nbsp;\n  {{comment_count comments/count}}\n</div>"
-    };
-
-    Item.prototype.onShow = function() {
-      return jQuery("abbr.timeago").timeago();
+      video: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n  </h4>\n</div>\n<div class=\"content\">\n  <p> {{name}} </p>\n  <div class=\"video\">\n      <img class=\"pic\" src=\"{{picture}}\" />\n      <div class=\"description\">\n        <h4> {{name}} </h4>\n        {{format_source link}}\n      </div> \n  </div>\n</div>      \n<div class=\"clear\"> </div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      link: " \n<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\">\n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}}\n  </h4>\n</div>\n<div class=\"content\">\n  <p>{{message}}</p>\n  <div class=\"link\">\n    <img class=\"pic\" src=\"{{picture}}\" />\n    <div class=\"description\">\n      <h4>{{name}}</h4>\n      <p>{{description}}</p>\n    </div>\n    <div class=\"clear\"></div>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      photo: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n  </h4>\n</div> \n<div class=\"content\">\n    <p>{{message}}</p>\n  <div class=\"pic_container\">\n    <a href=\"{{link}}\"> \n      <img src=\"{{make_big picture}}\" />\n    </a>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      status: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n      {{{format_story story story_tags from}}} \n  </h4>\n</div>\n<div class=\"status\">\n  <p>{{message}}</p>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}}\n  &nbsp;&nbsp;\n  {{comment_count comments/count}}\n</div>"
     };
 
     return Item;
