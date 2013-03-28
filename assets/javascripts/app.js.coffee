@@ -4,6 +4,7 @@
 //= require ./lib/backbone.marionette
 //= require ./lib/handlebars
 //= require ./lib/jquery.timeago
+//= require ./lib/humane
 //= require_tree ./helpers
 //= require ./patches/marionette
 //= require ./prelude

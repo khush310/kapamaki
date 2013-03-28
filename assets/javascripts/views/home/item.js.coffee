@@ -44,15 +44,17 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
         </div>
         <div class="content">
           <p>{{message}}</p>
-          <div class="link">
-            <img class="pic" src="{{picture}}" />
-            <div class="description">
-              <h3>{{name}}</h3>
-              <p>{{description}}</p>
+          {{#if name}}
+            <div class="link">
+              <img class="pic" src="{{picture}}" />
+              <div class="description">
+                <h3>{{name}}</h3>
+                <p>{{description}}</p>
+              </div>
+              <div class="clear"></div>
             </div>
-            <div class="clear"></div>
           </div>
-        </div>
+        {{/if}}
         <div class="clear"></div>
         <div class="box">
           {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}
