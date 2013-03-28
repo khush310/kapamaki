@@ -9,7 +9,9 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </a> 
           <h4>
             {{{format_story story story_tags from}}} 
-            <abbr class="timeago" title="{{updated_time}}"> {{updated_time}} </abbr>
+            <div>
+              <abbr class="timeago" title="{{created_time}}"> {{created_time}} </abbr>
+            </div>    
           </h4>
         </div>
         <div class="content">
@@ -35,7 +37,9 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </a>
           <h4>
             {{{format_story story story_tags from}}}
-            <abbr class="timeago" title="{{updated_time}}"> {{updated_time}}</abbr>
+            <div>
+              <abbr class="timeago" title="{{created_time}}"> {{created_time}}</abbr>
+            </div>
           </h4>
         </div>
         <div class="content">
@@ -43,7 +47,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           <div class="link">
             <img class="pic" src="{{picture}}" />
             <div class="description">
-              <h4>{{name}}</h4>
+              <h3>{{name}}</h3>
               <p>{{description}}</p>
             </div>
             <div class="clear"></div>
@@ -61,7 +65,9 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </a> 
           <h4>
             {{{format_story story story_tags from}}} 
-            <abbr class="timeago" title="{{updated_time}}"> {{updated_time}}</abbr>
+            <div>
+              <abbr class="timeago" title="{{created_time}}"> {{created_time}}</abbr>
+            </div>
           </h4>
         </div> 
         <div class="content">
@@ -84,7 +90,9 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
         </a>
         <h4>
           {{{format_story story story_tags from}}} 
-          <abbr class="timeago" title="{{updated_time}}"> {{updated_time }} </abbr>
+          <div>
+            <abbr class="timeago" title="{{created_time}}"> {{created_time }} </abbr>
+          </div>
         </h4>
       </div>
       <div class="status">

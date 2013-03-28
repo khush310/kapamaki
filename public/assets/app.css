@@ -1000,6 +1000,87 @@ ul.icons {
 
 .icon-folder-open-alt:before {
   content: "\f115"; }
+#stage #stage-wrapper #main #streams {
+  overflow-y: scroll;
+  height: 100%;
+  color: #545761;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif; }
+  #stage #stage-wrapper #main #streams a {
+    text-decoration: none;
+    color: #324b8b;
+    padding: 10px 0; }
+  #stage #stage-wrapper #main #streams .link {
+    background-color: #f3f4f7;
+    border: 1px solid #c5cadd;
+    margin-right: 20px;
+    padding-left: 170px; }
+  #stage #stage-wrapper #main #streams .video {
+    background-color: #f3f4f7;
+    border: 1px solid #c5cadd;
+    margin-right: 20px;
+    padding-left: 170px; }
+  #stage #stage-wrapper #main #streams .link img {
+    padding: 10px 0 10px 0; }
+  #stage #stage-wrapper #main #streams .video img {
+    padding: 10px 0 10px 0;
+    max-width: 150px;
+    margin-left: -150px;
+    display: block; }
+  #stage #stage-wrapper #main #streams .content > div img.pic {
+    display: block;
+    float: left;
+    max-width: 150px;
+    margin-left: -150px; }
+  #stage #stage-wrapper #main #streams .description {
+    padding-left: 20px; }
+  #stage #stage-wrapper #main #streams .box {
+    background-color: #eff2f5;
+    height: 50px;
+    margin: 20px -20px 0 0;
+    padding: 15px 0 0 20px;
+    color: #9b9b9b;
+    border-top: 1px solid #c5cadd;
+    font-weight: normal;
+    font-size: 14px; }
+  #stage #stage-wrapper #main #streams div.listcontainer > div {
+    margin: 10px 10px;
+    background: white;
+    padding: 20px 20px 0px 0px;
+    border-width: 1px 1px 2.5px;
+    border-style: solid;
+    border-color: rgba(40, 70, 129, 0.43); }
+  #stage #stage-wrapper #main #streams .content {
+    margin-left: 20px;
+    margin-top: 25px;
+    width: 100%;
+    color: black;
+    font-size: 14px; }
+  #stage #stage-wrapper #main #streams .status {
+    float: left;
+    margin-left: 20px;
+    width: 100%;
+    color: black;
+    line-height: 1.5; }
+  #stage #stage-wrapper #main #streams .pic_container {
+    text-align: center; }
+  #stage #stage-wrapper #main #streams .title h4 {
+    margin: -60px 0 0 65px;
+    font-weight: normal;
+    padding-top: 5px;
+    line-height: 1.5; }
+    #stage #stage-wrapper #main #streams .title h4 div {
+      color: #9b9b9b;
+      font-size: 14px; }
+  #stage #stage-wrapper #main #streams .link h4 {
+    color: #3e4350;
+    padding: 0px 8px 8px 12px;
+    line-height: 2.5;
+    font-size: 12px; }
+  #stage #stage-wrapper #main #streams .title {
+    padding: 0 0 0 20px; }
+  #stage #stage-wrapper #main #streams .content > div img {
+    margin: 5px 0;
+    max-width: 100%; }
 
 
 
@@ -1070,137 +1151,6 @@ body {
   width: 100%;
   padding: 3em 0 0 0; }
 
-#stage #stage-wrapper #main #streams {
-overflow-y:scroll;
-height: 100%;
-color: rgb(84, 87, 97);
-font-family:  'lucida grande',tahoma,verdana,arial,sans-serif;
-}
-
-#stage #stage-wrapper #main #streams a{
-  text-decoration: none;
-  color: rgb(50, 75, 139);
-  padding: 10px 0;
-  font-family:  'lucida grande',tahoma,verdana,arial,sans-serif;
-}
-#stage #stage-wrapper #main #streams .link{
-  background-color: #f3f4f7;
-  border: 1px solid rgb(197, 202, 221);
-  margin-right: 20px;
-  padding-left: 170px;
-}
-#stage #stage-wrapper #main #streams .video{
-  background-color: #f3f4f7;
-  border: 1px solid rgb(197, 202, 221);
-  margin-right: 20px;
-  padding-left: 170px;
-}
-
-
-#stage #stage-wrapper #main #streams .link img{
-padding: 10px 0 10px 0;
-}
-
-#stage #stage-wrapper #main #streams .video img{
-padding: 10px 0 10px 0;
-max-width: 150px;
-margin-left: -150px;
-display: block;
-}
-
-#stage #stage-wrapper #main #streams .content > div img.pic{
-  display: block;
-  float: left;
-  max-width: 150px;
-  margin-left: -150px;
-}
-#stage #stage-wrapper #main #streams .description{
-  float: left;
-}
-
-#stage #stage-wrapper #main #streams .description p{
-  margin-top: -50px;
-  padding-left: 10px;
-}
-
-
-#stage #stage-wrapper #main #streams .box{
-  background-color: #eff2f5;
-  height: 50px;
-  margin: 20px -20px 0 0;
-  padding: 15px 0 0 20px;
-  color: #9b9b9b;
-  border-top: 1px solid rgb(197, 202, 221);
-  font-weight: normal;
-  font-size: 14px;
-  font-family: Helvetica, sans-serif;
-}
-#stage #stage-wrapper #main #streams .header span{
-  color:red;
-}  
-
-#stage #stage-wrapper #main #streams > div > div {
-  margin: 10px 10px;
-  background: white;
-  padding: 20px 20px 0px 0px;
-  border-width: 1px 1px 2.5px;
-  border-style: solid;
-  border-color: rgba(40, 70, 129, 0.43);
-}
-#stage #stage-wrapper #main #streams .content {
-  margin-left: 20px;
-  margin-top: 25px;
-  width: 100%;
-  color: black;
-  font-family: Helvetica, sans-serif;
-  font-size: 14px;
-}
-
-#stage #stage-wrapper #main #streams .status {
-  float: left;
-  margin-left: 20px;
-  width: 100%;
-  color: black;
-  padding-top: 15px;
-}
-#stage #stage-wrapper #main #streams p{
-  font-size: 14px;
-  font-family: Helvetica, sans-serif;
-  line-height: 1.8;
-  padding-top: 30px;
-  padding-right: 15px;
-  margin-top: -10px;
-}
-
-#stage #stage-wrapper #main #streams .pic_container{
-  text-align: center;
-}
-#stage #stage-wrapper #main #streams .title h4{
-  margin: -55px 0 0 65px;
-  font-weight: normal;
-  padding-top: 5px;
-}
-
-#stage #stage-wrapper #main #streams .title .timeago{
-  padding-left: 67px;
-}
-
-#stage #stage-wrapper #main #streams .link h4{
-  color: #3e4350;
-  padding: 0px 8px 8px 12px;
-  line-height: 2.5;
-  font-size: 12px;
-
-}
-
-#stage #stage-wrapper #main #streams .title {
-  padding: 0 0 0 20px;
-}
-
-#stage #stage-wrapper #main #streams .content > div img{
-  margin: 10px 0;
-  max-width: 100%;
-}
 
 #stage #stage-wrapper #main #header {
   background: -webkit-gradient(linear, center top, center bottom, from(#738aba), to(#2c4987));
