@@ -5,17 +5,13 @@ class K.Views.Landing.Main extends Backbone.Marionette.ItemView
     <div id="login_session">
       <div class="main"> </div>
       <p>
-        <input id="user_name" type="text" placeholder="Email" />
+        <strong> kapamaki </strong>
       </p>
-      <p>
-        <input id="user_password" type="text" placeholder="Password" />
-      </p>
-        <button type="submit"> Login </button>  
-      </p>
+      <button type="submit"> Login with Facebook</button>
     </div>  
   """
   events:
-    "click #login_into_facebook": "logIntoFacebook"
+    "click button": "logIntoFacebook"
   
   logIntoFacebook: () ->
     FB.login(
