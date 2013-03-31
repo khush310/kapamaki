@@ -49,10 +49,20 @@
 
     function Sidebar() {
       this.onShow = __bind(this.onShow, this);
+
+      this.showNI = __bind(this.showNI, this);
       return Sidebar.__super__.constructor.apply(this, arguments);
     }
 
-    Sidebar.prototype.template = "<ul>\n  <li class=\"search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a href=\"#image\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"messages\">\n      <a href=\"#\">\n        Messages\n      </a>\n  </li>\n  <li class=\"events\">\n      <a href=\"#\">\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a href=\"#\">\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a href=\"#\">\n        Log Out\n      </a>\n  </li>\n</ul>";
+    Sidebar.prototype.events = {
+      "click .ni": "showNI"
+    };
+
+    Sidebar.prototype.showNI = function() {
+      return humane.log("Not Implemented");
+    };
+
+    Sidebar.prototype.template = "<ul>\n  <li class=\"ni search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a href=\"#profile/{{id}}\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"ni messages\">\n      <a href=\"#\">\n        Messages\n      </a>\n  </li>\n  <li class=\"ni events\">\n      <a href=\"#\">\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a href=\"#\">\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a href=\"#\">\n        Log Out\n      </a>\n  </li>\n</ul>";
 
     Sidebar.prototype.onShow = function() {
       return console.log(this.model);

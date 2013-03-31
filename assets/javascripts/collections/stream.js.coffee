@@ -13,3 +13,4 @@ class K.Stream extends Backbone.Collection
   initialize: (models, options) =>
     console.log options
     @owner_id = options.owner_id
+ 

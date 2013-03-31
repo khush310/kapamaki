@@ -5,8 +5,8 @@ K.app.addRegions
 
 K.app.bind "initialize:after", (options) ->
   new K.AppRouter
-  Backbone.history.start()
   window.location.hash = ""
+  Backbone.history.start()
   FB.getLoginStatus(
     (resp) ->
       if resp.status is "connected"

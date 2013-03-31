@@ -16,6 +16,7 @@
     background-color: #f3f4f7;
     border: 1px solid #c5cadd;
     margin-right: 20px;
+    margin-left: 40px;
     padding-left: 170px; }
   #stage #stage-wrapper #main #streams .link img {
     padding: 10px 0 10px 0; }
@@ -48,11 +49,14 @@
     border-style: solid;
     border-color: rgba(40, 70, 129, 0.43); }
   #stage #stage-wrapper #main #streams .content {
-    margin-left: 20px;
     margin-top: 25px;
     width: 100%;
     color: black;
     font-size: 14px; }
+    #stage #stage-wrapper #main #streams .content .link {
+      margin-left: 40px; }
+    #stage #stage-wrapper #main #streams .content p {
+      margin-left: 20px; }
   #stage #stage-wrapper #main #streams .status {
     float: left;
     margin-left: 20px;

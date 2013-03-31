@@ -33,26 +33,35 @@ class K.Views.Home.Main extends Backbone.Marionette.Layout
       
 
 class K.Views.Sidebar extends Backbone.Marionette.ItemView
+  events: 
+    "click .ni": "showNI"
+    "click .logout": "Logout"
+  showNI: () =>
+    humane.log("Not Implemented")
+
+  Logout: () =>
+    FB.logout () =>
+      Backbone.history.navigate("landing", true)
 
   template: """
     <ul>
-      <li class="search">
+      <li class="ni search">
         <input type="text" placeholder="Search" />
       </li>
       <li class="user-name" style="background-image: url(http://graph.facebook.com/{{id}}/picture)">
-        <a href="#image"> {{ name }}  </a>
+        <a href="#profile/{{id}}"> {{ name }}  </a>
       </li>
       <li class="news-feeds">
         <a href="#">
           News Feeds
         </a>
       </li>
-      <li class="messages">
+      <li class="ni messages">
           <a href="#">
             Messages
           </a>
       </li>
-      <li class="events">
+      <li class="ni events">
           <a href="#">
             Events
           </a>
@@ -77,6 +86,9 @@ class K.Views.HeaderView extends Backbone.Marionette.ItemView
 
   events:
     "click #sidemenu": "toggleSidebar"
+    "click .ni": "showNI"
+  showNI: ()=>
+    humane.log ("Not Implemented")
 
   toggleSidebar: () =>
     console.log "togglingSidebar"
@@ -93,7 +105,7 @@ class K.Views.HeaderView extends Backbone.Marionette.ItemView
         </span>
         
       </li>
-      <li class="center-menu">
+      <li class="ni center-menu">
           <span id="request">
             <a href="#">
             </a>
@@ -110,7 +122,7 @@ class K.Views.HeaderView extends Backbone.Marionette.ItemView
           </span>
         
       </li>
-      <li class="chat">
+      <li class="ni chat">
         <span id="chat">
           <a href="#chat">
             <span class="icon-comments"></span>

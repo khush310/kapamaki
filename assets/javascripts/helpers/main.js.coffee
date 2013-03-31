@@ -38,13 +38,21 @@ Handlebars.registerHelper "format_source", (source) ->
 Handlebars.registerHelper "format_work", (positions) ->
   if positions 
     last_position = _(positions).last()
-    """<p> Works at <span> #{last_position.employer.name} <span> </p> """
+    """<p> 
+          <span class="workicon"> </span>
+          Works at 
+          <span> #{last_position.employer.name} <span> 
+        </p> """
 
 
 Handlebars.registerHelper "format_education", (education) ->
   if education
     last_school = _(education).last()
-    """<p> Studied at <span> #{last_school.school.name} <span> </p> """
+    """<p> 
+          <span class="eduicon"> </span>
+          Studied at 
+          <span> #{last_school.school.name} <span> 
+        </p> """
 
 
 
