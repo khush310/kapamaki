@@ -29,23 +29,13 @@
       headerView = new K.Views.HeaderView;
       this.headerRegion.show(headerView);
       return FB.api('/me', function(response) {
-        var sidebarView, stream, streamView;
+        var sidebarView;
         console.log(response);
         K.currentUser = new Backbone.Model(response);
         sidebarView = new K.Views.Sidebar({
           model: K.currentUser
         });
-        _this.sidebarRegion.show(sidebarView);
-        stream = new K.Stream;
-        console.log(stream);
-        streamView = new K.Views.Home.Stream({
-          collection: stream
-        });
-        console.log(_this);
-        _this.mainRegion.show(streamView);
-        console.log("finsihed showing two views in regions");
-        stream.loadNextPage();
-        return window.a = stream;
+        return _this.sidebarRegion.show(sidebarView);
       });
     };
 

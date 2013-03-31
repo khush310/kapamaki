@@ -8,13 +8,21 @@
     __extends(Stream, _super);
 
     function Stream() {
+      this.initialize = __bind(this.initialize, this);
+
       this.loadNextPage = __bind(this.loadNextPage, this);
       return Stream.__super__.constructor.apply(this, arguments);
     }
 
     Stream.prototype.loadNextPage = function() {
-      var _this = this;
-      return FB.api('/me/home', {
+      var url,
+        _this = this;
+      if (this.owner_id === "me") {
+        url = '/me/home';
+      } else {
+        url = '/' + this.owner_id + '/feed';
+      }
+      return FB.api(url, {
         until: this.until
       }, function(response) {
         console.log(response.paging);
@@ -22,6 +30,11 @@
         _this.add(response.data);
         return _this.until = response.paging.next.match(/until=(.*)/)[1];
       });
+    };
+
+    Stream.prototype.initialize = function(models, options) {
+      console.log(options);
+      return this.owner_id = options.owner_id;
     };
 
     return Stream;

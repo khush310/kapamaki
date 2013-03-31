@@ -1,0 +1,23 @@
+#landing {
+  height: 100%;
+  width: 100%; }
+
+#login_session {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: -webkit-gradient(linear, center top, center bottom, from(#738aba), to(#2c4987));
+  -webkit-box-shadow: inset 0 1px 1px -1px white;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  padding-top: 10%; }
+  #login_session p {
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    font-size: 35px;
+    color: white; }
+  #login_session button {
+    height: 4em;
+    width: 20em;
+    padding: 0 0.5em;
+    font-size: 15px; }

@@ -12,17 +12,18 @@
 
     Main.prototype.id = "landing";
 
-    Main.prototype.template = "<a id=\"login_into_facebook\" href=\"#\">Login</a>";
+    Main.prototype.template = "<div id=\"login_session\">\n  <div class=\"main\"> </div>\n  <p>\n    <strong> kapamaki </strong>\n  </p>\n  <button type=\"submit\"> Login with Facebook</button>\n</div>  ";
 
     Main.prototype.events = {
-      "click #login_into_facebook": "logIntoFacebook"
+      "click button": "logIntoFacebook"
     };
 
     Main.prototype.logIntoFacebook = function() {
+      humane.log("logging in...");
       return FB.login(function(response) {
         return window.location.hash = "home";
       }, {
-        scope: 'read_stream'
+        scope: 'read_stream,last_name,user_education_history,friends_education_history,user_work_history,friends_work_history,user_location,friends_location,user_hometown,friends_hometown'
       });
     };
 

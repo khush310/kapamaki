@@ -12,7 +12,7 @@ class K.Views.Home.Main extends Backbone.Marionette.Layout
     </div>
   """
   
-  regions: 
+  regions:  
     sidebarRegion: '#sidebar'
     headerRegion: '#header'
     mainRegion: '#streams'
@@ -28,16 +28,9 @@ class K.Views.Home.Main extends Backbone.Marionette.Layout
       K.currentUser = new Backbone.Model response
       sidebarView = new K.Views.Sidebar({ model: K.currentUser })
       @sidebarRegion.show sidebarView
-    
+
   
-      stream = new K.Stream 
-      console.log stream
-      streamView = new K.Views.Home.Stream collection: stream
-      console.log @
-      @mainRegion.show streamView
-      console.log "finsihed showing two views in regions"
-      stream.loadNextPage()
-      window.a = stream
+      
 
 class K.Views.Sidebar extends Backbone.Marionette.ItemView
 

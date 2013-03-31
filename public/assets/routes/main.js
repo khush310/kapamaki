@@ -18,9 +18,21 @@
     };
 
     AppRouter.prototype.home = function() {
-      var homeView;
+      var homeView, stream, streamView;
       homeView = new K.Views.Home.Main;
-      return K.app.stageRegion.show(homeView);
+      K.app.stageRegion.show(homeView);
+      stream = new K.Stream(null, {
+        owner_id: 'me'
+      });
+      console.log(stream);
+      streamView = new K.Views.Home.Stream({
+        collection: stream
+      });
+      console.log(homeView);
+      homeView.mainRegion.show(streamView);
+      console.log("finsihed showing two views in regions");
+      stream.loadNextPage();
+      return window.a = stream;
     };
 
     AppRouter.prototype.landing = function() {
@@ -33,14 +45,34 @@
       return FB.login(function(response) {
         return window.location.hash = "home";
       }, {
-        scope: 'read_stream'
+        scope: 'read_stream,user_education_history,friends_education_history,last_name'
       });
     };
 
-    AppRouter.prototype.profile = function() {
-      var profileView;
-      profileView = new K.Views.Profile.Main;
-      return K.app.stageRegion.show(profileView);
+    AppRouter.prototype.profile = function(id) {
+      console.log(id);
+      return FB.api("/" + id, {
+        fields: "cover,id,first_name,last_name,username,education,hometown,location,work"
+      }, function(response) {
+        var layoutView, profile, profileView, stream, streamView;
+        console.log(response);
+        profile = new Backbone.Model(response);
+        profileView = new K.Views.Profile.Main({
+          model: profile
+        });
+        layoutView = K.app.stageRegion.currentView;
+        layoutView.mainRegion.show(profileView);
+        stream = new K.Stream(null, {
+          owner_id: response.id
+        });
+        console.log(stream);
+        streamView = new K.Views.Home.Stream({
+          collection: stream
+        });
+        profileView.feedsRegion.show(streamView);
+        console.log("finsihed showing two views in regions");
+        return stream.loadNextPage();
+      });
     };
 
     return AppRouter;

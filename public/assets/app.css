@@ -1123,6 +1123,62 @@ body {
   opacity: 0.7;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
 }
+#landing {
+  height: 100%;
+  width: 100%; }
+
+#login_session {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: -webkit-gradient(linear, center top, center bottom, from(#738aba), to(#2c4987));
+  -webkit-box-shadow: inset 0 1px 1px -1px white;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  padding-top: 10%; }
+  #login_session p {
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    font-size: 35px;
+    color: white; }
+  #login_session button {
+    height: 4em;
+    width: 20em;
+    padding: 0 0.5em;
+    font-size: 15px; }
+.header {
+  position: relative; }
+  .header #coverphoto {
+    width: 100%;
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: 100% auto; }
+  .header #dp img {
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    border: 3.5px solid white;
+    bottom: -50px;
+    left: 15px;
+    display: block; }
+
+.info {
+  background-color: white;
+  font-family: Helvetica, sans-serif;
+  padding-bottom: 20px; }
+  .info #name {
+    padding: 20px 0 20px 120px;
+    font-weight: bold;
+    color: #383a42;
+    font-size: 20px; }
+  .info #about {
+    font-weight: bold;
+    line-height: 0.9;
+    font-size: 12px;
+    padding-left: 35px;
+    white-space: nowrap; }
+    .info #about span {
+      color: #2f4385; }
 #stage #stage-wrapper #main #streams {
   overflow-y: scroll;
   height: 100%;
@@ -1467,10 +1523,7 @@ body {
   padding-left: 45px;
   height: 2.5em;
   line-height: 2.5em;
-}
-   
-          
-            
+}             
         
         
 @media (min-width: 700px) {

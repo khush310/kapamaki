@@ -15135,11 +15135,11 @@ Handlebars.template = Handlebars.VM.template;
   Handlebars.registerHelper("format_story", function(story, story_tags, from) {
     console.log(arguments);
     if (!story) {
-      story = "<strong> <a href=\"#profile/{from.id}\">" + from.name + "</a> </strong>";
+      story = "<strong> <a href=\"#profile/" + from.id + "\">" + from.name + "</a> </strong>";
     }
     _(story_tags).each(function(value, key) {
       return _(value).each(function(tag) {
-        return story = story.replace(tag.name, "<strong> <a href=\"#profile/{tag.id}\">" + tag.name + "</a> </strong>");
+        return story = story.replace(tag.name, "<strong> <a href=\"#profile/" + tag.id + "\">" + tag.name + "</a> </strong>");
       });
     });
     return story;
@@ -15150,6 +15150,22 @@ Handlebars.template = Handlebars.VM.template;
     a = document.createElement('a');
     a.href = source;
     return a.hostname;
+  });
+
+  Handlebars.registerHelper("format_work", function(positions) {
+    var last_position;
+    if (positions) {
+      last_position = _(positions).last();
+      return "<p> Works at <span> " + last_position.employer.name + " <span> </p> ";
+    }
+  });
+
+  Handlebars.registerHelper("format_education", function(education) {
+    var last_school;
+    if (education) {
+      last_school = _(education).last();
+      return "<p> Studied at <span> " + last_school.school.name + " <span> </p> ";
+    }
   });
 
 }).call(this);
@@ -15271,13 +15287,21 @@ if (!window.K) {
     __extends(Stream, _super);
 
     function Stream() {
+      this.initialize = __bind(this.initialize, this);
+
       this.loadNextPage = __bind(this.loadNextPage, this);
       return Stream.__super__.constructor.apply(this, arguments);
     }
 
     Stream.prototype.loadNextPage = function() {
-      var _this = this;
-      return FB.api('/me/home', {
+      var url,
+        _this = this;
+      if (this.owner_id === "me") {
+        url = '/me/home';
+      } else {
+        url = '/' + this.owner_id + '/feed';
+      }
+      return FB.api(url, {
         until: this.until
       }, function(response) {
         console.log(response.paging);
@@ -15285,6 +15309,11 @@ if (!window.K) {
         _this.add(response.data);
         return _this.until = response.paging.next.match(/until=(.*)/)[1];
       });
+    };
+
+    Stream.prototype.initialize = function(models, options) {
+      console.log(options);
+      return this.owner_id = options.owner_id;
     };
 
     return Stream;
@@ -15314,7 +15343,7 @@ if (!window.K) {
 
     Item.prototype.templates = {
       video: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}} </abbr>\n    </div>    \n  </h4>\n</div>\n<div class=\"content\">\n  <p> {{name}} </p>\n  <div class=\"video\">\n      <img class=\"pic\" src=\"{{picture}}\" />\n      <div class=\"description\">\n        <h4> {{name}} </h4>\n        {{format_source link}}\n      </div>\n      <div class=\"clear\"> </div> \n  </div>\n</div>      \n<div class=\"clear\"> </div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
-      link: " \n<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\">\n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}}\n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}}</abbr>\n    </div>\n  </h4>\n</div>\n<div class=\"content\">\n  <p>{{message}}</p>\n  {{#if name}}\n    <div class=\"link\">\n      <img class=\"pic\" src=\"{{picture}}\" />\n      <div class=\"description\">\n        <h3>{{name}}</h3>\n        <p>{{description}}</p>\n      </div>\n      <div class=\"clear\"></div>\n    </div>\n  </div>\n{{/if}}\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      link: " \n<div class=\"title\">\n  <a href=\"#profile/{{from/id}}\">\n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}}\n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}}</abbr>\n    </div>\n  </h4>\n</div>\n<div class=\"content\">\n  <p>{{message}}</p>\n  {{#if name}}\n    <div class=\"link\">\n      <img class=\"pic\" src=\"{{picture}}\" />\n      <div class=\"description\">\n        <h3>{{name}}</h3>\n        <p>{{description}}</p>\n      </div>\n      <div class=\"clear\"></div>\n    </div>\n  </div>\n{{/if}}\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
       photo: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}}</abbr>\n    </div>\n  </h4>\n</div> \n<div class=\"content\">\n    <p>{{message}}</p>\n  <div class=\"pic_container\">\n    <a href=\"{{link}}\"> \n      <img src=\"{{make_big picture}}\" />\n    </a>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
       status: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time }} </abbr>\n    </div>\n  </h4>\n</div>\n<div class=\"status\">\n  <p>{{message}}</p>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}}\n  &nbsp;&nbsp;\n  {{comment_count comments/count}}\n</div>"
     };
@@ -15364,23 +15393,13 @@ if (!window.K) {
       headerView = new K.Views.HeaderView;
       this.headerRegion.show(headerView);
       return FB.api('/me', function(response) {
-        var sidebarView, stream, streamView;
+        var sidebarView;
         console.log(response);
         K.currentUser = new Backbone.Model(response);
         sidebarView = new K.Views.Sidebar({
           model: K.currentUser
         });
-        _this.sidebarRegion.show(sidebarView);
-        stream = new K.Stream;
-        console.log(stream);
-        streamView = new K.Views.Home.Stream({
-          collection: stream
-        });
-        console.log(_this);
-        _this.mainRegion.show(streamView);
-        console.log("finsihed showing two views in regions");
-        stream.loadNextPage();
-        return window.a = stream;
+        return _this.sidebarRegion.show(sidebarView);
       });
     };
 
@@ -15457,7 +15476,7 @@ if (!window.K) {
     Stream.prototype.loadNextPage = function(e) {
       e.preventDefault();
       this.collection.loadNextPage();
-      return humane.log("loading next page");
+      return humane.log("Loading...");
     };
 
     Stream.prototype.itemViewContainer = ".listcontainer";
@@ -15481,17 +15500,18 @@ if (!window.K) {
 
     Main.prototype.id = "landing";
 
-    Main.prototype.template = "<a id=\"login_into_facebook\" href=\"#\">Login</a>";
+    Main.prototype.template = "<div id=\"login_session\">\n  <div class=\"main\"> </div>\n  <p>\n    <strong> kapamaki </strong>\n  </p>\n  <button type=\"submit\"> Login with Facebook</button>\n</div>  ";
 
     Main.prototype.events = {
-      "click #login_into_facebook": "logIntoFacebook"
+      "click button": "logIntoFacebook"
     };
 
     Main.prototype.logIntoFacebook = function() {
+      humane.log("logging in...");
       return FB.login(function(response) {
         return window.location.hash = "home";
       }, {
-        scope: 'read_stream'
+        scope: 'read_stream,last_name,user_education_history,friends_education_history,user_work_history,friends_work_history,user_location,friends_location,user_hometown,friends_hometown'
       });
     };
 
@@ -15501,8 +15521,28 @@ if (!window.K) {
 
 }).call(this);
 (function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
+  K.provide("Views.Profile", {});
 
+  K.Views.Profile.Main = (function(_super) {
+
+    __extends(Main, _super);
+
+    function Main() {
+      return Main.__super__.constructor.apply(this, arguments);
+    }
+
+    Main.prototype.template = "<div class=\"header\">\n  <div id=\"coverphoto\" style=\"background-image:url({{cover/source}})\" > </div>\n  <div id=\"dp\">\n    <img id=\"profilepic\" src=\"http://graph.facebook.com/{{id}}/picture\" />\n  </div>\n</div>\n<div class=\"info\">\n  <div id=\"name\">\n    {{first_name}} {{last_name}}\n  </div>\n  <div id=\"about\">\n    {{{format_work work}}}\n    {{{format_education education}}}\n    Lives in <span> {{location/name}} </span>\n  </div>\n</div>\n<div id=\"feeds\">\n</div>";
+
+    Main.prototype.regions = {
+      feedsRegion: '#feeds'
+    };
+
+    return Main;
+
+  })(Backbone.Marionette.Layout);
 
 }).call(this);
 (function() {
@@ -15525,9 +15565,21 @@ if (!window.K) {
     };
 
     AppRouter.prototype.home = function() {
-      var homeView;
+      var homeView, stream, streamView;
       homeView = new K.Views.Home.Main;
-      return K.app.stageRegion.show(homeView);
+      K.app.stageRegion.show(homeView);
+      stream = new K.Stream(null, {
+        owner_id: 'me'
+      });
+      console.log(stream);
+      streamView = new K.Views.Home.Stream({
+        collection: stream
+      });
+      console.log(homeView);
+      homeView.mainRegion.show(streamView);
+      console.log("finsihed showing two views in regions");
+      stream.loadNextPage();
+      return window.a = stream;
     };
 
     AppRouter.prototype.landing = function() {
@@ -15540,14 +15592,34 @@ if (!window.K) {
       return FB.login(function(response) {
         return window.location.hash = "home";
       }, {
-        scope: 'read_stream'
+        scope: 'read_stream,user_education_history,friends_education_history,last_name'
       });
     };
 
-    AppRouter.prototype.profile = function() {
-      var profileView;
-      profileView = new K.Views.Profile.Main;
-      return K.app.stageRegion.show(profileView);
+    AppRouter.prototype.profile = function(id) {
+      console.log(id);
+      return FB.api("/" + id, {
+        fields: "cover,id,first_name,last_name,username,education,hometown,location,work"
+      }, function(response) {
+        var layoutView, profile, profileView, stream, streamView;
+        console.log(response);
+        profile = new Backbone.Model(response);
+        profileView = new K.Views.Profile.Main({
+          model: profile
+        });
+        layoutView = K.app.stageRegion.currentView;
+        layoutView.mainRegion.show(profileView);
+        stream = new K.Stream(null, {
+          owner_id: response.id
+        });
+        console.log(stream);
+        streamView = new K.Views.Home.Stream({
+          collection: stream
+        });
+        profileView.feedsRegion.show(streamView);
+        console.log("finsihed showing two views in regions");
+        return stream.loadNextPage();
+      });
     };
 
     return AppRouter;

@@ -1,3 +1,4 @@
+
 class K.Views.Home.Item extends Backbone.Marionette.ItemView
   template: () =>
     @templates[@model.get('type')] or ""
@@ -32,7 +33,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
     """
     link: """ 
         <div class="title">
-          <a href="http://facebook.com/{{from/id}}">
+          <a href="#profile/{{from/id}}">
             <img src="http://graph.facebook.com/{{from/id}}/picture" />
           </a>
           <h4>

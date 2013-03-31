@@ -12,6 +12,6 @@ class K.Views.Home.Stream extends Backbone.Marionette.CompositeView
   loadNextPage: (e) =>
     e.preventDefault()
     @collection.loadNextPage()
-    humane.log("loading next page")
+    humane.log("Loading...")
 
   itemViewContainer: ".listcontainer"

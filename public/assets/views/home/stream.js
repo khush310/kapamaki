@@ -23,7 +23,7 @@
     Stream.prototype.loadNextPage = function(e) {
       e.preventDefault();
       this.collection.loadNextPage();
-      return humane.log("loading next page");
+      return humane.log("Loading...");
     };
 
     Stream.prototype.itemViewContainer = ".listcontainer";
