@@ -44,9 +44,10 @@ body {
   margin: 0;
   padding: 0;
   background-color: #c4cde0; 
-  font-size: 100%;
   font-weight: normal;
-  overflow: hidden; }
+  overflow: hidden; 
+  font-size: 100%
+  }
 
 #stage {
   height: 100%;

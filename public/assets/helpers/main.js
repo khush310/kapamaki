@@ -50,7 +50,7 @@
     var last_position;
     if (positions) {
       last_position = _(positions).last();
-      return "<p> Works at <span> " + last_position.employer.name + " <span> </p> ";
+      return "<p> \n  <span class=\"workicon\"> </span>\n  Works at \n  <span> " + last_position.employer.name + " <span> \n</p> ";
     }
   });
 
@@ -58,7 +58,7 @@
     var last_school;
     if (education) {
       last_school = _(education).last();
-      return "<p> Studied at <span> " + last_school.school.name + " <span> </p> ";
+      return "<p> \n  <span class=\"eduicon\"> </span>\n  Studied at \n  <span> " + last_school.school.name + " <span> \n</p> ";
     }
   });
 

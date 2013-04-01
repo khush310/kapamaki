@@ -8,8 +8,8 @@
 
   K.app.bind("initialize:after", function(options) {
     new K.AppRouter;
-    Backbone.history.start();
     window.location.hash = "";
+    Backbone.history.start();
     return FB.getLoginStatus(function(resp) {
       if (resp.status === "connected") {
         return window.location.hash = "home";

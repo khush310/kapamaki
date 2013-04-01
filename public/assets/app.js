@@ -15156,7 +15156,7 @@ Handlebars.template = Handlebars.VM.template;
     var last_position;
     if (positions) {
       last_position = _(positions).last();
-      return "<p> Works at <span> " + last_position.employer.name + " <span> </p> ";
+      return "<p> \n  <span class=\"workicon\"> </span>\n  Works at \n  <span> " + last_position.employer.name + " <span> \n</p> ";
     }
   });
 
@@ -15164,7 +15164,7 @@ Handlebars.template = Handlebars.VM.template;
     var last_school;
     if (education) {
       last_school = _(education).last();
-      return "<p> Studied at <span> " + last_school.school.name + " <span> </p> ";
+      return "<p> \n  <span class=\"eduicon\"> </span>\n  Studied at \n  <span> " + last_school.school.name + " <span> \n</p> ";
     }
   });
 
@@ -15342,10 +15342,10 @@ if (!window.K) {
     };
 
     Item.prototype.templates = {
-      video: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}} </abbr>\n    </div>    \n  </h4>\n</div>\n<div class=\"content\">\n  <p> {{name}} </p>\n  <div class=\"video\">\n      <img class=\"pic\" src=\"{{picture}}\" />\n      <div class=\"description\">\n        <h4> {{name}} </h4>\n        {{format_source link}}\n      </div>\n      <div class=\"clear\"> </div> \n  </div>\n</div>      \n<div class=\"clear\"> </div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
-      link: " \n<div class=\"title\">\n  <a href=\"#profile/{{from/id}}\">\n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}}\n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}}</abbr>\n    </div>\n  </h4>\n</div>\n<div class=\"content\">\n  <p>{{message}}</p>\n  {{#if name}}\n    <div class=\"link\">\n      <img class=\"pic\" src=\"{{picture}}\" />\n      <div class=\"description\">\n        <h3>{{name}}</h3>\n        <p>{{description}}</p>\n      </div>\n      <div class=\"clear\"></div>\n    </div>\n  </div>\n{{/if}}\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
-      photo: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}}</abbr>\n    </div>\n  </h4>\n</div> \n<div class=\"content\">\n    <p>{{message}}</p>\n  <div class=\"pic_container\">\n    <a href=\"{{link}}\"> \n      <img src=\"{{make_big picture}}\" />\n    </a>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
-      status: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time }} </abbr>\n    </div>\n  </h4>\n</div>\n<div class=\"status\">\n  <p>{{message}}</p>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}}\n  &nbsp;&nbsp;\n  {{comment_count comments/count}}\n</div>"
+      video: "<div class=\"title\">\n  <a href=\"#profile/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}} </abbr>\n    </div>    \n  </h4>\n</div>\n<div class=\"content\">\n  <p> {{name}} </p>\n  <div class=\"video\">\n      <div><img class=\"pic\" src=\"{{picture}}\" /> </div>\n      <div class=\"description\">\n        <h4> {{name}} </h4>\n        {{format_source link}}\n      </div>\n      <div class=\"clear\"> </div> \n  </div>\n</div>      \n<div class=\"clear\"> </div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      link: " \n<div class=\"title\">\n  <a href=\"#profile/{{from/id}}\">\n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}}\n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}}</abbr>\n    </div>\n  </h4>\n</div>\n<div class=\"content\">\n  <p>{{message}}</p>\n  {{#if name}}\n    <div class=\"link\">\n      <div> <img class=\"pic\" src=\"{{picture}}\" /> </div>\n      <div class=\"description\">\n        <h3>{{name}}</h3>\n        <p>{{description}}</p>\n      </div>\n    </div>\n  </div>\n{{/if}}\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      photo: "<div class=\"title\">\n  <a href=\"#profile/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}}</abbr>\n    </div>\n  </h4>\n</div> \n<div class=\"content\">\n    <div class=\"description\">\n      {{message}}\n    </div>\n  <div class=\"pic_container\">\n    <a href=\"{{link}}\"> \n      <img src=\"{{make_big picture}}\" />\n    </a>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      status: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time }} </abbr>\n    </div>\n  </h4>\n</div>\n<div class=\"status\">\n  <div class=\"description\">\n    {{message}}\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}}\n  &nbsp;&nbsp;\n  {{comment_count comments/count}}\n</div>"
     };
 
     Item.prototype.onShow = function() {
@@ -15414,16 +15414,26 @@ if (!window.K) {
     function Sidebar() {
       this.onShow = __bind(this.onShow, this);
 
+      this.Logout = __bind(this.Logout, this);
+
       this.showNI = __bind(this.showNI, this);
       return Sidebar.__super__.constructor.apply(this, arguments);
     }
 
     Sidebar.prototype.events = {
-      "click .ni": "showNI"
+      "click .ni": "showNI",
+      "click .logout": "Logout"
     };
 
     Sidebar.prototype.showNI = function() {
       return humane.log("Not Implemented");
+    };
+
+    Sidebar.prototype.Logout = function() {
+      var _this = this;
+      return FB.logout(function() {
+        return Backbone.history.navigate("landing", true);
+      });
     };
 
     Sidebar.prototype.template = "<ul>\n  <li class=\"ni search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a href=\"#profile/{{id}}\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"ni messages\">\n      <a href=\"#\">\n        Messages\n      </a>\n  </li>\n  <li class=\"ni events\">\n      <a href=\"#\">\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a href=\"#\">\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a href=\"#\">\n        Log Out\n      </a>\n  </li>\n</ul>";
@@ -15442,11 +15452,18 @@ if (!window.K) {
 
     function HeaderView() {
       this.toggleSidebar = __bind(this.toggleSidebar, this);
+
+      this.showNI = __bind(this.showNI, this);
       return HeaderView.__super__.constructor.apply(this, arguments);
     }
 
     HeaderView.prototype.events = {
-      "click #sidemenu": "toggleSidebar"
+      "click #sidemenu": "toggleSidebar",
+      "click .ni": "showNI"
+    };
+
+    HeaderView.prototype.showNI = function() {
+      return humane.log("Not Implemented");
     };
 
     HeaderView.prototype.toggleSidebar = function() {
@@ -15454,7 +15471,7 @@ if (!window.K) {
       return $("body").toggleClass("showSidebar");
     };
 
-    HeaderView.prototype.template = "    \n<ul>\n  <li class=\"menu\">\n    <span id=\"sidemenu\">\n      <a href=\"#side-menu\">\n        <span class=\"icon-reorder\"></span>\n      </a>\n    </span>\n    \n  </li>\n  <li class=\"center-menu\">\n      <span id=\"request\">\n        <a href=\"#\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"messages\">\n        <a href=\"#\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"notifications\">\n        <a href=\"#\">\n        </a>\n      </span>\n    \n  </li>\n  <li class=\"chat\">\n    <span id=\"chat\">\n      <a href=\"#chat\">\n        <span class=\"icon-comments\"></span>\n      </a>\n    </span>\n  </li>\n</ul>";
+    HeaderView.prototype.template = "    \n<ul>\n  <li class=\"menu\">\n    <span id=\"sidemenu\">\n      <a href=\"#side-menu\">\n        <span class=\"icon-reorder\"></span>\n      </a>\n    </span>\n    \n  </li>\n  <li class=\"ni center-menu\">\n      <span id=\"request\">\n        <a href=\"#\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"messages\">\n        <a href=\"#\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"notifications\">\n        <a href=\"#\">\n        </a>\n      </span>\n    \n  </li>\n  <li class=\"ni chat\">\n    <span id=\"chat\">\n      <a href=\"#chat\">\n        <span class=\"icon-comments\"></span>\n      </a>\n    </span>\n  </li>\n</ul>";
 
     return HeaderView;
 
@@ -15544,7 +15561,7 @@ if (!window.K) {
       return Main.__super__.constructor.apply(this, arguments);
     }
 
-    Main.prototype.template = "<div class=\"header\">\n  <div id=\"coverphoto\" style=\"background-image:url({{cover/source}})\" > </div>\n  <div id=\"dp\">\n    <img id=\"profilepic\" src=\"http://graph.facebook.com/{{id}}/picture\" />\n  </div>\n</div>\n<div class=\"info\">\n  <div id=\"name\">\n    {{first_name}} {{last_name}}\n  </div>\n  <div id=\"about\">\n    {{{format_work work}}}\n    {{{format_education education}}}\n    Lives in <span> {{location/name}} </span>\n  </div>\n</div>\n<div id=\"feeds\">\n</div>";
+    Main.prototype.template = "<div class=\"header\">\n  <div id=\"coverphoto\" style=\"background-image:url({{cover/source}})\" > </div>\n  <div id=\"dp\">\n    <img id=\"profilepic\" src=\"http://graph.facebook.com/{{id}}/picture\" />\n  </div>\n</div>\n<div class=\"info\">\n  <div id=\"name\">\n    {{first_name}} {{last_name}}\n  </div>\n  <div id=\"about\">\n    {{{format_work work}}}\n    {{{format_education education}}}\n    <span class=\"locicon\"> </span>\n    Lives in \n    <span> {{location/name}} </span>\n  </div>\n</div>\n<div id=\"feeds\">\n</div>";
 
     Main.prototype.regions = {
       feedsRegion: '#feeds'
@@ -15647,8 +15664,8 @@ if (!window.K) {
 
   K.app.bind("initialize:after", function(options) {
     new K.AppRouter;
-    Backbone.history.start();
     window.location.hash = "";
+    Backbone.history.start();
     return FB.getLoginStatus(function(resp) {
       if (resp.status === "connected") {
         return window.location.hash = "home";

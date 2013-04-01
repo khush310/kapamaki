@@ -5,7 +5,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
   templates:
     video: """
         <div class="title">
-          <a href="http://facebook.com/{{from/id}}"> 
+          <a href="#profile/{{from/id}}"> 
             <img src="http://graph.facebook.com/{{from/id}}/picture" />
           </a> 
           <h4>
@@ -18,7 +18,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
         <div class="content">
           <p> {{name}} </p>
           <div class="video">
-              <img class="pic" src="{{picture}}" />
+              <div><img class="pic" src="{{picture}}" /> </div>
               <div class="description">
                 <h4> {{name}} </h4>
                 {{format_source link}}
@@ -47,12 +47,11 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           <p>{{message}}</p>
           {{#if name}}
             <div class="link">
-              <img class="pic" src="{{picture}}" />
+              <div> <img class="pic" src="{{picture}}" /> </div>
               <div class="description">
                 <h3>{{name}}</h3>
                 <p>{{description}}</p>
               </div>
-              <div class="clear"></div>
             </div>
           </div>
         {{/if}}
@@ -63,7 +62,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
     """
     photo: """
         <div class="title">
-          <a href="http://facebook.com/{{from/id}}"> 
+          <a href="#profile/{{from/id}}"> 
             <img src="http://graph.facebook.com/{{from/id}}/picture" />
           </a> 
           <h4>
@@ -74,7 +73,9 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </h4>
         </div> 
         <div class="content">
-            <p>{{message}}</p>
+            <div class="description">
+              {{message}}
+            </div>
           <div class="pic_container">
             <a href="{{link}}"> 
               <img src="{{make_big picture}}" />
@@ -99,7 +100,9 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
         </h4>
       </div>
       <div class="status">
-        <p>{{message}}</p>
+        <div class="description">
+          {{message}}
+        </div>
       </div>
       <div class="clear"></div>
       <div class="box">
