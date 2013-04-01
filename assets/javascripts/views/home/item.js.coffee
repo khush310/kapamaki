@@ -77,11 +77,11 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </h4>
         </div> 
         <div class="content">
-            <div id="pic>
-              <p>
-                {{message}}
-              </p>
-            </div>
+          <div id="pic>
+            <p>
+              {{message}}
+            </p>
+          </div>
           <div class="pic_container">
             <a href="{{link}}"> 
               <img src="{{make_big picture}}" />
