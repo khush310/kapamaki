@@ -19,8 +19,8 @@
     border: 1px solid #c5cadd;
     display: -webkit-box;
     padding: 1em; }
-    #stage #stage-wrapper #main #streams .link_container img {
-      max-width: 150px;
+    #stage #stage-wrapper #main #streams .link_container img.pic {
+      max-width: 100px;
       display: block; }
   #stage #stage-wrapper #main #streams .video_container {
     background-color: #f3f4f7;
@@ -30,9 +30,6 @@
     #stage #stage-wrapper #main #streams .video_container img {
       max-width: 150px;
       display: block; }
-  #stage #stage-wrapper #main #streams .content > div img.pic {
-    display: block;
-    max-width: 150px; }
   #stage #stage-wrapper #main #streams .box {
     background-color: #eff2f5;
     height: 30px;

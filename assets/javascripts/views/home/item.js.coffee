@@ -77,7 +77,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </h4>
         </div> 
         <div class="content">
-          <div id="pic>
+          <div id="pic">
             <p>
               {{message}}
             </p>
