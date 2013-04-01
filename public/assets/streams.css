@@ -52,10 +52,10 @@
   #stage #stage-wrapper #main #streams .content {
     width: 100%;
     color: black; }
-    #vid {
+    #vid p {
       padding-left: 1em; }
 
-    #pic {
+    #pic p {
       padding-left: 1em; }
 
   #stage #stage-wrapper #main #streams .status {
