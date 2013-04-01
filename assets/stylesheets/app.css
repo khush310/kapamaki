@@ -176,6 +176,12 @@ body {
   font-family: "Helvetica Neue",HelveticaNeue,"Helvetica-Neue",Helvetica,"BBAlpha Sans",sans-serif; 
 }
 
+#stage #stage-wrapper #sidebar > div{
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  overflow: scroll;
+}
+
 #stage #stage-wrapper #sidebar ul {
   list-style-type: disc;
   display: block; 

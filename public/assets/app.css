@@ -1233,6 +1233,10 @@ body {
   font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
   word-wrap: break-word;
   font-size: 1em; }
+  #stage #stage-wrapper #main #streams > div {
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    overflow: scroll; }
   #stage #stage-wrapper #main #streams .description {
     -webkit-box-flex: 1;
     padding: 0 1em 0 1em; }
@@ -1477,6 +1481,12 @@ body {
   border-right: 1px solid #5f6673; 
   overflow-y:hidden;
   font-family: "Helvetica Neue",HelveticaNeue,"Helvetica-Neue",Helvetica,"BBAlpha Sans",sans-serif; 
+}
+
+#stage #stage-wrapper #sidebar > div{
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  overflow: scroll;
 }
 
 #stage #stage-wrapper #sidebar ul {
