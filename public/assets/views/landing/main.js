@@ -23,7 +23,7 @@
       return FB.login(function(response) {
         return window.location.hash = "home";
       }, {
-        scope: 'read_stream,last_name,user_education_history,friends_education_history,user_work_history,friends_work_history,user_location,friends_location,user_hometown,friends_hometown'
+        scope: 'read_stream,user_education_history,friends_education_history,user_work_history,friends_work_history,user_location,friends_location,user_hometown,friends_hometown'
       });
     };
 
