@@ -16,8 +16,10 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </h4>
         </div>
         <div class="content">
-          <p> {{name}} </p>
-          <div class="video">
+          <div id="vid">
+            <p> {{name}} </p>
+          </div>
+          <div class="video_container">
               <div><img class="pic" src="{{picture}}" /> </div>
               <div class="description">
                 <h4> {{name}} </h4>
@@ -44,9 +46,11 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </h4>
         </div>
         <div class="content">
-          <p>{{message}}</p>
+          <p style="padding: 0 1em 0 1em">
+            {{message}}
+          </p>
           {{#if name}}
-            <div class="link">
+            <div class="link_container">
               <div> <img class="pic" src="{{picture}}" /> </div>
               <div class="description">
                 <h3>{{name}}</h3>
@@ -73,8 +77,10 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
           </h4>
         </div> 
         <div class="content">
-            <div class="description">
-              {{message}}
+            <div id="pic>
+              <p>
+                {{message}}
+              </p>
             </div>
           <div class="pic_container">
             <a href="{{link}}"> 
@@ -100,9 +106,9 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
         </h4>
       </div>
       <div class="status">
-        <div class="description">
+        <p>
           {{message}}
-        </div>
+        </p>
       </div>
       <div class="clear"></div>
       <div class="box">
