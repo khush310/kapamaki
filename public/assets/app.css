@@ -1262,12 +1262,10 @@ body {
   #stage #stage-wrapper #main #streams .content {
     width: 100%;
     color: black; }
-    #vid p {
+    #stage #stage-wrapper #main #streams .content #vid p {
       padding-left: 1em; }
-
-    #pic p {
+    #stage #stage-wrapper #main #streams .content #pic p {
       padding-left: 1em; }
-
   #stage #stage-wrapper #main #streams .status {
     padding: 0 1em;
     width: 100%;
