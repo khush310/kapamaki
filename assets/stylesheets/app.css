@@ -179,7 +179,8 @@ body {
 #stage #stage-wrapper #sidebar > div{
   -webkit-overflow-scrolling: touch;
   height: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #stage #stage-wrapper #sidebar ul {

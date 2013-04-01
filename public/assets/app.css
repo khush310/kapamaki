@@ -1236,7 +1236,8 @@ body {
   #stage #stage-wrapper #main #streams > div {
     -webkit-overflow-scrolling: touch;
     height: 100%;
-    overflow: scroll; }
+    overflow-y: scroll;
+    overflow-x: hidden; }
   #stage #stage-wrapper #main #streams .description {
     -webkit-box-flex: 1;
     padding: 0 1em 0 1em; }
@@ -1486,7 +1487,8 @@ body {
 #stage #stage-wrapper #sidebar > div{
   -webkit-overflow-scrolling: touch;
   height: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #stage #stage-wrapper #sidebar ul {
