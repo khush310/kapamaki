@@ -1123,6 +1123,24 @@ body {
   opacity: 0.7;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
 }
+/* CSS for jQuery More plugin v1.0.0. */
+
+.more-hidden {
+	display: none;
+}
+.more-link {
+	margin-left: 1em;
+	padding: 0.125em;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	border-radius: 0.25em;
+	-moz-border-radius: 0.25em;
+	-webkit-border-radius: 0.25em;
+	text-decoration: none;
+}
+.more-link img {
+	border: none;
+}
 #landing {
   height: 100%;
   width: 100%; }

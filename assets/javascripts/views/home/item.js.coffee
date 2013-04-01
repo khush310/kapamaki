@@ -54,7 +54,9 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
               <div> <img class="pic" src="{{picture}}" /> </div>
               <div class="description">
                 <h3>{{name}}</h3>
-                <p>{{description}}</p>
+                <p class="see_more">
+                  {{description}}
+                </p>
               </div>
             </div>
           </div>
@@ -106,7 +108,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
         </h4>
       </div>
       <div class="status">
-        <p>
+        <p class="see_more">
           {{message}}
         </p>
       </div>
@@ -119,6 +121,7 @@ class K.Views.Home.Item extends Backbone.Marionette.ItemView
     """
   onShow: ( ) =>
     jQuery("abbr.timeago").timeago();
+    jQuery(".see_more").more();
 
 
 
