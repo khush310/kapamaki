@@ -33,7 +33,7 @@
     display: -webkit-box;
     padding: 1em; }
     #stage #stage-wrapper #main #streams .video_container img {
-      max-width: 150px;
+      max-width: 100px;
       display: block; }
   #stage #stage-wrapper #main #streams .box {
     background-color: #eff2f5;
@@ -77,3 +77,6 @@
         font-size: 0.9em; }
   #stage #stage-wrapper #main #streams .pic_container img {
     max-width: 100%; }
+  #stage #stage-wrapper #main #streams .more-link {
+    background-color: transparent;
+    border: none; }

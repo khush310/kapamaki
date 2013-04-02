@@ -22,6 +22,7 @@
       var redirect_uri;
       humane.log("logging in...");
       redirect_uri = window.location.href;
+      console.log(redirect_uri);
       return FB.login(function(response) {
         return window.location.hash = "home";
       }, {
