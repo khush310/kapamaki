@@ -19,6 +19,9 @@ class K.Views.Landing.Main extends Backbone.Marionette.ItemView
     console.log redirect_uri
     FB.login(
       (response) -> 
-        window.location.hash = "home"
+        if (response.authResponse)
+          window.location.hash = "home"
+        else
+          window.location.hash = "landing"
       {scope: 'read_stream,user_education_history,friends_education_history,user_work_history,friends_work_history,user_location,friends_location,user_hometown,friends_hometown', redirect_uri: redirect_uri, display: 'touch'}
     )

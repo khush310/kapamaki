@@ -52,7 +52,7 @@ class K.Views.Sidebar extends Backbone.Marionette.ItemView
         <a href="#profile/{{id}}"> {{ name }}  </a>
       </li>
       <li class="news-feeds">
-        <a href="#">
+        <a href="#home">
           News Feeds
         </a>
       </li>

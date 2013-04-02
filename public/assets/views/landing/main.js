@@ -24,7 +24,11 @@
       redirect_uri = window.location.href;
       console.log(redirect_uri);
       return FB.login(function(response) {
-        return window.location.hash = "home";
+        if (response.authResponse) {
+          return window.location.hash = "home";
+        } else {
+          return window.location.hash = "landing";
+        }
       }, {
         scope: 'read_stream,user_education_history,friends_education_history,user_work_history,friends_work_history,user_location,friends_location,user_hometown,friends_hometown',
         redirect_uri: redirect_uri,

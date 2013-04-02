@@ -15590,7 +15590,7 @@ if (!window.K) {
       });
     };
 
-    Sidebar.prototype.template = "<ul>\n  <li class=\"ni search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a href=\"#profile/{{id}}\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"ni messages\">\n      <a href=\"#\">\n        Messages\n      </a>\n  </li>\n  <li class=\"ni events\">\n      <a href=\"#\">\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a href=\"#\">\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a href=\"#\">\n        Log Out\n      </a>\n  </li>\n</ul>";
+    Sidebar.prototype.template = "<ul>\n  <li class=\"ni search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a href=\"#profile/{{id}}\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#home\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"ni messages\">\n      <a href=\"#\">\n        Messages\n      </a>\n  </li>\n  <li class=\"ni events\">\n      <a href=\"#\">\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a href=\"#\">\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a href=\"#\">\n        Log Out\n      </a>\n  </li>\n</ul>";
 
     Sidebar.prototype.onShow = function() {
       return console.log(this.model);
@@ -15693,7 +15693,11 @@ if (!window.K) {
       redirect_uri = window.location.href;
       console.log(redirect_uri);
       return FB.login(function(response) {
-        return window.location.hash = "home";
+        if (response.authResponse) {
+          return window.location.hash = "home";
+        } else {
+          return window.location.hash = "landing";
+        }
       }, {
         scope: 'read_stream,user_education_history,friends_education_history,user_work_history,friends_work_history,user_location,friends_location,user_hometown,friends_hometown',
         redirect_uri: redirect_uri,
