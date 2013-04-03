@@ -10,6 +10,9 @@
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden; }
+    #stage #stage-wrapper #main #streams > div .listcontainer, #stage #stage-wrapper #main #streams > div .paging {
+      position: relative;
+      -webkit-transform: translate3d(0, 0, 0); }
   #stage #stage-wrapper #main #streams .description {
     -webkit-box-flex: 1;
     padding: 0 1em 0 1em; }
