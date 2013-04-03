@@ -1267,11 +1267,11 @@ body {
     background-color: #eff2f5;
     height: 30px;
     margin-top: 20px;
-    padding: 5px 0 0 20px;
+    padding: 9px 0 0 20px;
     color: #9b9b9b;
     border-top: 1px solid #c5cadd;
     font-weight: normal;
-    font-size: 0.7em; }
+    font-size: 0.8em; }
   #stage #stage-wrapper #main #streams div.listcontainer > div {
     margin: 10px 10px;
     background: white;
@@ -1309,17 +1309,17 @@ body {
     background-color: transparent;
     border: none; }
   #stage #stage-wrapper #main #streams .paging {
-    background: -webkit-gradient(linear, center top, center bottom, from(#738aba), to(#2c4987));
     -webkit-box-shadow: inset 0 1px 1px -1px white;
-    height: 3m;
-    width: 10em;
-    padding: 0 1em 1em 1em;
-    font-size: 1em;
+    font-size: 1.3em;
     -webkit-box-align: center;
     text-align: center;
-    color: black;
     border: 2px outset buttonface;
-    -webkit-appearance: buttonface; }
+    padding: 1em 0;
+    background-color: #e9e9e9;
+    margin: 0 auto;
+    width: 150px; }
+    #stage #stage-wrapper #main #streams .paging a {
+      color: black; }
 
 
 

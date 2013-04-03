@@ -15,8 +15,10 @@ class K.Views.Profile.Main extends Backbone.Marionette.Layout
       {{{format_work work}}}
       {{{format_education education}}}
       <span class="locicon"> </span>
-      Lives in 
-      <span> {{location/name}} </span>
+      {{#if location/name}}
+        Lives in 
+        <span> {{location/name}} </span>
+      {{/if}}
     </div>
   </div>
   <div id="feeds">
