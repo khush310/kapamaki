@@ -50,10 +50,9 @@
     };
 
     AppRouter.prototype.profile = function(id) {
+      var loadView;
       console.log(id);
-      return FB.api("/" + id, {
-        fields: "cover,id,first_name,last_name,username,education,hometown,location,work"
-      }, function(response) {
+      loadView = function(response) {
         var layoutView, profile, profileView, stream, streamView;
         console.log(response);
         profile = new Backbone.Model(response);
@@ -72,6 +71,19 @@
         profileView.feedsRegion.show(streamView);
         console.log("finsihed showing two views in regions");
         return stream.loadNextPage();
+      };
+      return FB.api("/" + id, {
+        fields: "cover,id,first_name,last_name,username,education,hometown,location,work"
+      }, function(response) {
+        if (response.error) {
+          return FB.api("/" + id, {
+            fields: "cover,id,username,name"
+          }, function(response) {
+            return loadView(response);
+          });
+        } else {
+          return loadView(response);
+        }
       });
     };
 

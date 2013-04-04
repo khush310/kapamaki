@@ -15723,7 +15723,7 @@ if (!window.K) {
       return Main.__super__.constructor.apply(this, arguments);
     }
 
-    Main.prototype.template = "<div class=\"header\">\n  <div id=\"coverphoto\" style=\"background-image:url({{cover/source}})\" > </div>\n  <div id=\"dp\">\n    <img id=\"profilepic\" src=\"http://graph.facebook.com/{{id}}/picture\" />\n  </div>\n</div>\n<div class=\"info\">\n  <div id=\"name\">\n    {{first_name}} {{last_name}}\n  </div>\n  <div id=\"about\">\n    {{{format_work work}}}\n    {{{format_education education}}}\n    <span class=\"locicon\"> </span>\n    {{#if location/name}}\n      Lives in \n      <span> {{location/name}} </span>\n    {{/if}}\n  </div>\n</div>\n<div id=\"feeds\">\n</div>";
+    Main.prototype.template = "<div class=\"header\">\n  <div id=\"coverphoto\" style=\"background-image:url({{cover/source}})\" > </div>\n  <div id=\"dp\">\n    <img id=\"profilepic\" src=\"http://graph.facebook.com/{{id}}/picture\" />\n  </div>\n</div>\n<div class=\"info\">\n  <div id=\"name\">\n    {{#if name}}\n      {{name}}\n    {{else}}\n      {{first_name}} {{last_name}}\n    {{/if}}\n  </div>\n  <div id=\"about\">\n    {{{format_work work}}}\n    {{{format_education education}}}\n    {{#if location/name}}  \n      <span class=\"locicon\"> </span>\n      Lives in \n      <span> {{location/name}} </span>\n    {{/if}}\n  </div>\n</div>\n<div id=\"feeds\">\n</div>";
 
     Main.prototype.regions = {
       feedsRegion: '#feeds'
@@ -15786,10 +15786,9 @@ if (!window.K) {
     };
 
     AppRouter.prototype.profile = function(id) {
+      var loadView;
       console.log(id);
-      return FB.api("/" + id, {
-        fields: "cover,id,first_name,last_name,username,education,hometown,location,work"
-      }, function(response) {
+      loadView = function(response) {
         var layoutView, profile, profileView, stream, streamView;
         console.log(response);
         profile = new Backbone.Model(response);
@@ -15808,6 +15807,19 @@ if (!window.K) {
         profileView.feedsRegion.show(streamView);
         console.log("finsihed showing two views in regions");
         return stream.loadNextPage();
+      };
+      return FB.api("/" + id, {
+        fields: "cover,id,first_name,last_name,username,education,hometown,location,work"
+      }, function(response) {
+        if (response.error) {
+          return FB.api("/" + id, {
+            fields: "cover,id,username,name"
+          }, function(response) {
+            return loadView(response);
+          });
+        } else {
+          return loadView(response);
+        }
       });
     };
 

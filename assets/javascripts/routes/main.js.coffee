@@ -31,7 +31,7 @@ class K.AppRouter extends Backbone.Router
 
   profile:(id) ->
     console.log id
-    FB.api "/" + id, {fields:"cover,id,first_name,last_name,username,education,hometown,location,work"}, (response) ->
+    loadView = (response) ->
       console.log response
       profile = new Backbone.Model response 
       profileView = new K.Views.Profile.Main({model: profile})
@@ -43,7 +43,13 @@ class K.AppRouter extends Backbone.Router
       profileView.feedsRegion.show streamView
       console.log "finsihed showing two views in regions"
       stream.loadNextPage()
-       
+
+    FB.api "/" + id, {fields:"cover,id,first_name,last_name,username,education,hometown,location,work"}, (response) -> 
+      if response.error 
+        FB.api "/" + id, {fields: "cover,id,username,name"}, (response) ->
+          loadView(response)
+      else
+        loadView(response)
 
 
 

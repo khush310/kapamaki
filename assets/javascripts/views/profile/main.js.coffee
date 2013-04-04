@@ -9,13 +9,17 @@ class K.Views.Profile.Main extends Backbone.Marionette.Layout
   </div>
   <div class="info">
     <div id="name">
-      {{first_name}} {{last_name}}
+      {{#if name}}
+        {{name}}
+      {{else}}
+        {{first_name}} {{last_name}}
+      {{/if}}
     </div>
     <div id="about">
       {{{format_work work}}}
       {{{format_education education}}}
-      <span class="locicon"> </span>
-      {{#if location/name}}
+      {{#if location/name}}  
+        <span class="locicon"> </span>
         Lives in 
         <span> {{location/name}} </span>
       {{/if}}

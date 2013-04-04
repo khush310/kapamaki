@@ -22,20 +22,12 @@
   #stage #stage-wrapper #main #streams a {
     text-decoration: none;
     color: #576b95; }
-  #stage #stage-wrapper #main #streams .link_container {
+  #stage #stage-wrapper #main #streams .link_container, #stage #stage-wrapper #main #streams .video_container {
     background-color: #f3f4f7;
     border: 1px solid #c5cadd;
     display: -webkit-box;
     padding: 1em; }
-    #stage #stage-wrapper #main #streams .link_container img.pic {
-      max-width: 100px;
-      display: block; }
-  #stage #stage-wrapper #main #streams .video_container {
-    background-color: #f3f4f7;
-    border: 1px solid #c5cadd;
-    display: -webkit-box;
-    padding: 1em; }
-    #stage #stage-wrapper #main #streams .video_container img {
+    #stage #stage-wrapper #main #streams .link_container img.pic, #stage #stage-wrapper #main #streams .video_container img.pic {
       max-width: 100px;
       display: block; }
   #stage #stage-wrapper #main #streams .box {
@@ -57,9 +49,7 @@
   #stage #stage-wrapper #main #streams .content {
     width: 100%;
     color: black; }
-    #stage #stage-wrapper #main #streams .content #vid p {
-      padding-left: 1em; }
-    #stage #stage-wrapper #main #streams .content #pic p {
+    #stage #stage-wrapper #main #streams .content #vid p, #stage #stage-wrapper #main #streams .content #pic p {
       padding-left: 1em; }
   #stage #stage-wrapper #main #streams .status {
     padding: 0 1em;
@@ -92,6 +82,6 @@
     padding: 1em 0;
     background-color: #e9e9e9;
     margin: 0 auto;
-    width: 150px; }
+    width: 100%; }
     #stage #stage-wrapper #main #streams .paging a {
       color: black; }
