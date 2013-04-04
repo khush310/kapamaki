@@ -58,22 +58,22 @@ class K.Views.Sidebar extends Backbone.Marionette.ItemView
         </a>
       </li>
       <li class="ni messages">
-          <a href="#">
+          <a href="">
             Messages
           </a>
       </li>
       <li class="ni events">
-          <a href="#">
+          <a href="">
             Events
           </a>
       </li>
       <li class="friends">
-          <a href="#">
+          <a href="">
             Friends
           </a>
       </li>
       <li class="logout">
-          <a href="#">
+          <a href="">
             Log Out
           </a>
       </li>
@@ -88,10 +88,12 @@ class K.Views.HeaderView extends Backbone.Marionette.ItemView
   events:
     "click #sidemenu": "toggleSidebar"
     "click .ni": "showNI"
-  showNI: ()=>
+  showNI: (e)=>
+    e.preventDefault()
     humane.log ("Not Implemented")
 
-  toggleSidebar: () =>
+  toggleSidebar: (e) =>
+    e.preventDefault()
     console.log "togglingSidebar"
     $("body").toggleClass("showSidebar");
 
@@ -100,7 +102,7 @@ class K.Views.HeaderView extends Backbone.Marionette.ItemView
     <ul>
       <li class="menu">
         <span id="sidemenu">
-          <a href="#side-menu">
+          <a href="">
             <span class="icon-reorder"></span>
           </a>
         </span>
@@ -108,24 +110,24 @@ class K.Views.HeaderView extends Backbone.Marionette.ItemView
       </li>
       <li class="ni center-menu">
           <span id="request">
-            <a href="#">
+            <a href="">
             </a>
           </span>
           &emsp;
           <span id="messages">
-            <a href="#">
+            <a href="">
             </a>
           </span>
           &emsp;
           <span id="notifications">
-            <a href="#">
+            <a href="">
             </a>
           </span>
         
       </li>
       <li class="ni chat">
         <span id="chat">
-          <a href="#chat">
+          <a href="">
             <span class="icon-comments"></span>
           </a>
         </span>

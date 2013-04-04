@@ -84,7 +84,7 @@
       });
     };
 
-    Sidebar.prototype.template = "<ul>\n  <li class=\"ni search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a href=\"#profile/{{id}}\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#home\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"ni messages\">\n      <a href=\"#\">\n        Messages\n      </a>\n  </li>\n  <li class=\"ni events\">\n      <a href=\"#\">\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a href=\"#\">\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a href=\"#\">\n        Log Out\n      </a>\n  </li>\n</ul>";
+    Sidebar.prototype.template = "<ul>\n  <li class=\"ni search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a href=\"#profile/{{id}}\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#home\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"ni messages\">\n      <a href=\"\">\n        Messages\n      </a>\n  </li>\n  <li class=\"ni events\">\n      <a href=\"\">\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a href=\"\">\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a href=\"\">\n        Log Out\n      </a>\n  </li>\n</ul>";
 
     Sidebar.prototype.onShow = function() {
       return console.log(this.model);
@@ -110,16 +110,18 @@
       "click .ni": "showNI"
     };
 
-    HeaderView.prototype.showNI = function() {
+    HeaderView.prototype.showNI = function(e) {
+      e.preventDefault();
       return humane.log("Not Implemented");
     };
 
-    HeaderView.prototype.toggleSidebar = function() {
+    HeaderView.prototype.toggleSidebar = function(e) {
+      e.preventDefault();
       console.log("togglingSidebar");
       return $("body").toggleClass("showSidebar");
     };
 
-    HeaderView.prototype.template = "    \n<ul>\n  <li class=\"menu\">\n    <span id=\"sidemenu\">\n      <a href=\"#side-menu\">\n        <span class=\"icon-reorder\"></span>\n      </a>\n    </span>\n    \n  </li>\n  <li class=\"ni center-menu\">\n      <span id=\"request\">\n        <a href=\"#\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"messages\">\n        <a href=\"#\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"notifications\">\n        <a href=\"#\">\n        </a>\n      </span>\n    \n  </li>\n  <li class=\"ni chat\">\n    <span id=\"chat\">\n      <a href=\"#chat\">\n        <span class=\"icon-comments\"></span>\n      </a>\n    </span>\n  </li>\n</ul>";
+    HeaderView.prototype.template = "    \n<ul>\n  <li class=\"menu\">\n    <span id=\"sidemenu\">\n      <a href=\"\">\n        <span class=\"icon-reorder\"></span>\n      </a>\n    </span>\n    \n  </li>\n  <li class=\"ni center-menu\">\n      <span id=\"request\">\n        <a href=\"\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"messages\">\n        <a href=\"\">\n        </a>\n      </span>\n      &emsp;\n      <span id=\"notifications\">\n        <a href=\"\">\n        </a>\n      </span>\n    \n  </li>\n  <li class=\"ni chat\">\n    <span id=\"chat\">\n      <a href=\"\">\n        <span class=\"icon-comments\"></span>\n      </a>\n    </span>\n  </li>\n</ul>";
 
     return HeaderView;
 
