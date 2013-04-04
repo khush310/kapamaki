@@ -1331,6 +1331,7 @@ body {
   overflow-x: hidden; }
   #stage #stage-wrapper #main #streams > div {
     -webkit-overflow-scrolling: touch;
+    -webkit-backface-visibility: hidden;
     height: 100%;
     width: 100%;
     overflow: auto; }
