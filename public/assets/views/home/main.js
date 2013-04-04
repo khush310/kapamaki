@@ -37,7 +37,15 @@
         sidebarView = new K.Views.Sidebar({
           model: K.currentUser
         });
-        return _this.sidebarRegion.show(sidebarView);
+        _this.sidebarRegion.show(sidebarView);
+        mixpanel.identify(response.id);
+        mixpanel.people.set({
+          first_name: response.first_name,
+          last_name: response.last_name,
+          name: response.name,
+          id: response.id
+        });
+        return mixpanel.track("user_login");
       });
     };
 

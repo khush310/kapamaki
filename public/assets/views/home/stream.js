@@ -14,7 +14,7 @@
 
     Stream.prototype.itemView = K.Views.Home.Item;
 
-    Stream.prototype.template = "<div class=\"listcontainer\">\n</div>\n<div class=\"paging\">\n  <a href=\" \"> NextPage </a>\n</div>";
+    Stream.prototype.template = "<div class=\"listcontainer\">\n</div>\n<div class=\"paging\">\n  <a href=\" \"> Next Page </a>\n</div>";
 
     Stream.prototype.events = {
       "click .paging a": "loadNextPage"

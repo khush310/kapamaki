@@ -4,7 +4,7 @@ class K.Views.Home.Stream extends Backbone.Marionette.CompositeView
     <div class="listcontainer">
     </div>
     <div class="paging">
-      <a href=" "> NextPage </a>
+      <a href=" "> Next Page </a>
     </div>
   """
   events:

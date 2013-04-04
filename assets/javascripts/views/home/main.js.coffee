@@ -28,9 +28,10 @@ class K.Views.Home.Main extends Backbone.Marionette.Layout
       K.currentUser = new Backbone.Model response
       sidebarView = new K.Views.Sidebar({ model: K.currentUser })
       @sidebarRegion.show sidebarView
-
-  
-      
+      mixpanel.identify(response.id)
+      mixpanel.people.set({first_name: response.first_name, last_name: response.last_name, name: response.name, id: response.id});
+      mixpanel.track("user_login")
+     
 
 class K.Views.Sidebar extends Backbone.Marionette.ItemView
   events: 
