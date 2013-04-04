@@ -5,12 +5,14 @@
   font-family: 'lucida grande',tahoma,verdana,arial,sans-serif
   word-wrap: break-word
   font-size: 1em
+  width: 100%
+  overflow-x: hidden
   > div
     -webkit-overflow-scrolling: touch
     height: 100%
-    overflow-y: scroll
-    overflow-x: hidden
-    *
+    width: 100%
+    overflow: auto
+    .listcontainer, .paging
       position: relative
       -webkit-transform: translate3d(0,0,0)
   .description

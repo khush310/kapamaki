@@ -4,13 +4,15 @@
   color: #545761;
   font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
   word-wrap: break-word;
-  font-size: 1em; }
+  font-size: 1em;
+  width: 100%;
+  overflow-x: hidden; }
   #stage #stage-wrapper #main #streams > div {
     -webkit-overflow-scrolling: touch;
     height: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden; }
-    #stage #stage-wrapper #main #streams > div * {
+    width: 100%;
+    overflow: auto; }
+    #stage #stage-wrapper #main #streams > div .listcontainer, #stage #stage-wrapper #main #streams > div .paging {
       position: relative;
       -webkit-transform: translate3d(0, 0, 0); }
   #stage #stage-wrapper #main #streams .description {
