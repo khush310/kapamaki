@@ -7,6 +7,7 @@
 //= require ./lib/jquery.more
 //= require ./lib/humane
 //= require ./lib/fastclick
+//= require ./lib/add2home
 //= require_tree ./helpers
 //= require ./patches/marionette
 //= require ./prelude
