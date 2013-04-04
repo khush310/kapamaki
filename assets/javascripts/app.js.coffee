@@ -18,7 +18,7 @@
 //= require ./application
 
 $(document).ready () ->
-  if navigator.platform.indexOf("android") >= 0
+  if navigator.userAgent.toLowerCase().indexOf("android") >= 0
     $("body").addClass("android")
   K.app.start()
   new FastClick(document.body)
