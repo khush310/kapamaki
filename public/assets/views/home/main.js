@@ -40,10 +40,12 @@
         _this.sidebarRegion.show(sidebarView);
         mixpanel.identify(response.id);
         mixpanel.people.set({
-          first_name: response.first_name,
-          last_name: response.last_name,
-          name: response.name,
-          id: response.id
+          $first_name: response.first_name,
+          $last_name: response.last_name,
+          $name: response.name,
+          id: response.id,
+          $email: response.email,
+          avatar: "http://graph.facebook.com/" + response.id + "/picture"
         });
         return mixpanel.track("user_login");
       });

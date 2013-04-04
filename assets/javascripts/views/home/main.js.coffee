@@ -29,7 +29,7 @@ class K.Views.Home.Main extends Backbone.Marionette.Layout
       sidebarView = new K.Views.Sidebar({ model: K.currentUser })
       @sidebarRegion.show sidebarView
       mixpanel.identify(response.id)
-      mixpanel.people.set({first_name: response.first_name, last_name: response.last_name, name: response.name, id: response.id});
+      mixpanel.people.set({$first_name: response.first_name, $last_name: response.last_name, $name: response.name, id: response.id, $email: response.email, avatar: "http://graph.facebook.com/#{response.id}/picture"});
       mixpanel.track("user_login")
      
 
