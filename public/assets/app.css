@@ -1330,6 +1330,7 @@ body {
   width: 100%;
   overflow-x: hidden; }
   #stage #stage-wrapper #main #streams > div {
+    position: relative;
     -webkit-overflow-scrolling: touch;
     -webkit-backface-visibility: hidden;
     height: 100%;
