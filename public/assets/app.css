@@ -1466,7 +1466,9 @@ body {
 #stage {
   height: 100%;
   width: 100%;
-  padding: 0 0 0 0; }
+  padding: 0 0 0 0;
+  overflow: hidden;
+}
 
 #stage #stage-wrapper {
   height: 100%;

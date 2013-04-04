@@ -6,6 +6,7 @@
 //= require ./lib/jquery.timeago
 //= require ./lib/jquery.more
 //= require ./lib/humane
+//= require ./lib/fastclick
 //= require_tree ./helpers
 //= require ./patches/marionette
 //= require ./prelude
@@ -18,3 +19,5 @@
 
 $(document).ready () ->
   K.app.start();
+
+new FastClick(document.body)

@@ -12,7 +12,7 @@
 
     Main.prototype.id = "landing";
 
-    Main.prototype.template = "<div id=\"login_session\">\n  <div class=\"main\"> </div>\n  <p>\n    <strong> kapamaki </strong>\n  </p>\n  <button type=\"submit\"> Login with Facebook</button>\n</div>  ";
+    Main.prototype.template = "<div id=\"login_session\">\n  <div class=\"main\"> </div>\n  <p>\n    <strong> kapamaki </strong>\n  </p>\n  <button type=\"submit\"> Login with Facebook </button>\n</div>  ";
 
     Main.prototype.events = {
       "click button": "logIntoFacebook"

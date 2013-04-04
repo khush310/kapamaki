@@ -7,7 +7,7 @@ class K.Views.Landing.Main extends Backbone.Marionette.ItemView
       <p>
         <strong> kapamaki </strong>
       </p>
-      <button type="submit"> Login with Facebook</button>
+      <button type="submit"> Login with Facebook </button>
     </div>  
   """
   events:
