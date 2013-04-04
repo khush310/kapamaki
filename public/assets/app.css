@@ -1469,6 +1469,9 @@ body {
   padding: 0 0 0 0;
   overflow: hidden;
 }
+body.android #stage #stage-wrapper {
+  -webkit-transition: none;
+}
 
 #stage #stage-wrapper {
   height: 100%;

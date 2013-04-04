@@ -25,10 +25,17 @@
       return FB.api(url, {
         until: this.until
       }, function(response) {
-        console.log(response.paging);
-        console.log(response.data);
-        _this.add(response.data);
-        return _this.until = response.paging.next.match(/until=(.*)/)[1];
+        var _ref;
+        if (response.error) {
+
+        } else {
+          console.log(response.data);
+          console.log(response.paging);
+          _this.add(response.data);
+          if ((_ref = response.paging) != null ? _ref.next : void 0) {
+            return _this.until = response.paging.next.match(/until=(.*)/)[1];
+          }
+        }
       });
     };
 
