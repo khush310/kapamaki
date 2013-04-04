@@ -1,5 +1,5 @@
 class K.Views.Home.Main extends Backbone.Marionette.Layout
-  
+  type: "layout"
   id: "stage-wrapper"
   template: """
     <div id= "sidebar"> </div>

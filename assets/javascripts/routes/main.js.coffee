@@ -6,9 +6,12 @@ class K.AppRouter extends Backbone.Router
     "profile/:id": "profile" #function will take id 
 
   home: () ->  
-    homeView = new K.Views.Home.Main  #created homeview
-    K.app.stageRegion.show homeView
-    # created streams -> collection -> streamview finally shown in mainRegion (loading next page)
+    if (not K.app.stageRegion.currentView) or (K.app.stageRegion.currentView.type isnt "layout")
+      homeView = new K.Views.Home.Main  #created homeview
+      K.app.stageRegion.show homeView
+      # created streams -> collection -> streamview finally shown in mainRegion (loading next page)
+    else
+      homeView = K.app.stageRegion.currentView
     stream = new K.Stream null, owner_id: 'me'
     console.log stream
     streamView = new K.Views.Home.Stream collection: stream

@@ -19,8 +19,12 @@
 
     AppRouter.prototype.home = function() {
       var homeView, stream, streamView;
-      homeView = new K.Views.Home.Main;
-      K.app.stageRegion.show(homeView);
+      if ((!K.app.stageRegion.currentView) || (K.app.stageRegion.currentView.type !== "layout")) {
+        homeView = new K.Views.Home.Main;
+        K.app.stageRegion.show(homeView);
+      } else {
+        homeView = K.app.stageRegion.currentView;
+      }
       stream = new K.Stream(null, {
         owner_id: 'me'
       });

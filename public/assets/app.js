@@ -15530,6 +15530,8 @@ if (!window.K) {
       return Main.__super__.constructor.apply(this, arguments);
     }
 
+    Main.prototype.type = "layout";
+
     Main.prototype.id = "stage-wrapper";
 
     Main.prototype.template = "<div id= \"sidebar\"> </div>\n<div id= \"main\"> \n  <div id=\"header\"> </div>\n  <div id=\"streams\">\n    <div id=\"box\">\n    </div>\n  </div>\n</div>";
@@ -15755,8 +15757,12 @@ if (!window.K) {
 
     AppRouter.prototype.home = function() {
       var homeView, stream, streamView;
-      homeView = new K.Views.Home.Main;
-      K.app.stageRegion.show(homeView);
+      if ((!K.app.stageRegion.currentView) || (K.app.stageRegion.currentView.type !== "layout")) {
+        homeView = new K.Views.Home.Main;
+        K.app.stageRegion.show(homeView);
+      } else {
+        homeView = K.app.stageRegion.currentView;
+      }
       stream = new K.Stream(null, {
         owner_id: 'me'
       });

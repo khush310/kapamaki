@@ -12,6 +12,8 @@
       return Main.__super__.constructor.apply(this, arguments);
     }
 
+    Main.prototype.type = "layout";
+
     Main.prototype.id = "stage-wrapper";
 
     Main.prototype.template = "<div id= \"sidebar\"> </div>\n<div id= \"main\"> \n  <div id=\"header\"> </div>\n  <div id=\"streams\">\n    <div id=\"box\">\n    </div>\n  </div>\n</div>";
