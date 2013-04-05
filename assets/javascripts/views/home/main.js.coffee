@@ -58,22 +58,22 @@ class K.Views.Sidebar extends Backbone.Marionette.ItemView
         </a>
       </li>
       <li class="ni messages">
-          <a href="">
+          <a>
             Messages
           </a>
       </li>
       <li class="ni events">
-          <a href="">
+          <a>
             Events
           </a>
       </li>
       <li class="friends">
-          <a href="">
+          <a>
             Friends
           </a>
       </li>
       <li class="logout">
-          <a href="">
+          <a>
             Log Out
           </a>
       </li>
@@ -102,7 +102,7 @@ class K.Views.HeaderView extends Backbone.Marionette.ItemView
     <ul>
       <li class="menu">
         <span id="sidemenu">
-          <a href="">
+          <a>
             <span class="icon-reorder"></span>
           </a>
         </span>
@@ -110,24 +110,24 @@ class K.Views.HeaderView extends Backbone.Marionette.ItemView
       </li>
       <li class="ni center-menu">
           <span id="request">
-            <a href="">
+            <a>
             </a>
           </span>
           &emsp;
           <span id="messages">
-            <a href="">
+            <a>
             </a>
           </span>
           &emsp;
           <span id="notifications">
-            <a href="">
+            <a>
             </a>
           </span>
         
       </li>
       <li class="ni chat">
         <span id="chat">
-          <a href="">
+          <a>
             <span class="icon-comments"></span>
           </a>
         </span>
