@@ -82,7 +82,8 @@ body.android #stage #stage-wrapper {
   width: 70%;
   float: left;
   border-right: 1px solid #5f6673; 
-  overflow-y:hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
   font-family: "Helvetica Neue",HelveticaNeue,"Helvetica-Neue",Helvetica,"BBAlpha Sans",sans-serif; 
 }
 
