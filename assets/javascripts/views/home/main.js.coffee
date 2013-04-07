@@ -50,10 +50,10 @@ class K.Views.Sidebar extends Backbone.Marionette.ItemView
         <input type="text" placeholder="Search" />
       </li>
       <li class="user-name" style="background-image: url(http://graph.facebook.com/{{id}}/picture)">
-        <a href="#profile/{{id}}"> {{ name }}  </a>
+        <a rel="pushstate" href="#profile/{{id}}"> {{ name }}  </a> 
       </li>
       <li class="news-feeds">
-        <a href="#home">
+        <a rel="pushstate" href="#home">
           News Feeds
         </a>
       </li>

@@ -16660,7 +16660,7 @@ if (!window.K) {
       });
     };
 
-    Sidebar.prototype.template = "<ul>\n  <li class=\"ni search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a href=\"#profile/{{id}}\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#home\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"ni messages\">\n      <a>\n        Messages\n      </a>\n  </li>\n  <li class=\"ni events\">\n      <a>\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a>\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a>\n        Log Out\n      </a>\n  </li>\n</ul>";
+    Sidebar.prototype.template = "<ul>\n  <li class=\"ni search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a rel=\"pushstate\" href=\"#profile/{{id}}\"> {{ name }}  </a> \n  </li>\n  <li class=\"news-feeds\">\n    <a rel=\"pushstate\" href=\"#home\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"ni messages\">\n      <a>\n        Messages\n      </a>\n  </li>\n  <li class=\"ni events\">\n      <a>\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a>\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a>\n        Log Out\n      </a>\n  </li>\n</ul>";
 
     Sidebar.prototype.onShow = function() {
       return console.log(this.model);
@@ -16939,7 +16939,15 @@ if (!window.K) {
       $("body").addClass("android");
     }
     K.app.start();
-    return new FastClick(document.body);
+    new FastClick(document.body);
+    return $("a").live("click", function(e) {
+      var href;
+      if ($(this).attr('rel') === "pushstate") {
+        e.preventDefault();
+        href = $(this).attr("href");
+        return Backbone.history.navigate(href.slice(1), true);
+      }
+    });
   });
 
 }).call(this);

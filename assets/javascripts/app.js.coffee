@@ -23,3 +23,13 @@ $(document).ready () ->
     $("body").addClass("android")
   K.app.start()
   new FastClick(document.body)
+
+  $("a").live "click", ( e ) ->
+    if $(@).attr('rel') is "pushstate"
+      e.preventDefault()
+      href = $(@).attr("href")
+      Backbone.history.navigate href.slice(1), true
+
+
+
+

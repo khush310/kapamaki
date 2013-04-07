@@ -84,7 +84,7 @@
       });
     };
 
-    Sidebar.prototype.template = "<ul>\n  <li class=\"ni search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a href=\"#profile/{{id}}\"> {{ name }}  </a>\n  </li>\n  <li class=\"news-feeds\">\n    <a href=\"#home\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"ni messages\">\n      <a>\n        Messages\n      </a>\n  </li>\n  <li class=\"ni events\">\n      <a>\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a>\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a>\n        Log Out\n      </a>\n  </li>\n</ul>";
+    Sidebar.prototype.template = "<ul>\n  <li class=\"ni search\">\n    <input type=\"text\" placeholder=\"Search\" />\n  </li>\n  <li class=\"user-name\" style=\"background-image: url(http://graph.facebook.com/{{id}}/picture)\">\n    <a rel=\"pushstate\" href=\"#profile/{{id}}\"> {{ name }}  </a> \n  </li>\n  <li class=\"news-feeds\">\n    <a rel=\"pushstate\" href=\"#home\">\n      News Feeds\n    </a>\n  </li>\n  <li class=\"ni messages\">\n      <a>\n        Messages\n      </a>\n  </li>\n  <li class=\"ni events\">\n      <a>\n        Events\n      </a>\n  </li>\n  <li class=\"friends\">\n      <a>\n        Friends\n      </a>\n  </li>\n  <li class=\"logout\">\n      <a>\n        Log Out\n      </a>\n  </li>\n</ul>";
 
     Sidebar.prototype.onShow = function() {
       return console.log(this.model);
