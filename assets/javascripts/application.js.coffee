@@ -4,6 +4,7 @@ K.app.addRegions
   stageRegion: "#stage"
 
 K.app.bind "initialize:after", (options) ->
+  mixpanel.track("user_visit")
   new K.AppRouter
   window.location.hash = ""
   Backbone.history.start()

@@ -16919,6 +16919,7 @@ if (!window.K) {
   });
 
   K.app.bind("initialize:after", function(options) {
+    mixpanel.track("user_visit");
     new K.AppRouter;
     window.location.hash = "";
     Backbone.history.start();
