@@ -7,15 +7,16 @@ class K.Views.Landing.Main extends Backbone.Marionette.ItemView
       <p>
         <strong> kapamaki </strong>
       </p>
-      <button type="submit"> Login with Facebook </button>
+      <a id="button" href="#" type="submit"> Login with Facebook </a>
       <div id="screenshot"> <img src="/assets/Landing.png" /> 
       </div>
     </div>  
   """
   events:
-    "click button": "logIntoFacebook"
+    "click #button": "logIntoFacebook"
   
-  logIntoFacebook: () ->
+  logIntoFacebook: (e) ->
+    e.preventDefault()
     humane.log("logging in...")
     redirect_uri = window.location.href
     console.log redirect_uri
