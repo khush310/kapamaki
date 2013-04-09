@@ -50,6 +50,9 @@
     left: -70% !important;
     width: 70%;
   }
+  #login_session #button{
+    margin: 0 2em;
+  }
 }
 
 
