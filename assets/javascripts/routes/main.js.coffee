@@ -1,9 +1,20 @@
 class K.AppRouter extends Backbone.Router
   routes:
-    "home": "home"
     "landing": "landing"
     "login": "login"
+    "home": "home"
     "profile/:id": "profile" #function will take id 
+
+  landing: () ->
+    landingView = new K.Views.Landing.Main
+    K.app.stageRegion.show landingView
+  
+  login: () ->
+    FB.login(
+      (response) -> 
+        window.location.hash = "home"
+      {scope: 'read_stream,user_education_history,friends_education_history,last_name'}
+    )
 
   home: () ->  
     if (not K.app.stageRegion.currentView) or (K.app.stageRegion.currentView.type isnt "layout")
@@ -20,17 +31,6 @@ class K.AppRouter extends Backbone.Router
     console.log "finsihed showing two views in regions"
     stream.loadNextPage()
     window.a = stream                
-
-  landing: () ->
-    landingView = new K.Views.Landing.Main
-    K.app.stageRegion.show landingView
-  
-  login: () ->
-    FB.login(
-      (response) -> 
-        window.location.hash = "home"
-      {scope: 'read_stream,user_education_history,friends_education_history,last_name'}
-    )
 
   profile:(id) ->
     console.log id

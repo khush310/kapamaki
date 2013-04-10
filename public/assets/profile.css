@@ -18,17 +18,17 @@
 
 .info {
   background-color: white;
-  font-family: Helvetica, sans-serif;
   padding-bottom: 20px; }
   .info #name {
-    padding: 10px 0 20px 120px;
+    padding: 10px 0 10px 120px;
     font-weight: bold;
     color: #383a42;
-    font-size: 20px; }
-  .info #about {
+    font-size: 2em;
     font-weight: bold;
+    font-family: "Josefin Sans"; }
+  .info #about {
     line-height: 0.9;
-    font-size: 12px;
+    font-size: 1em;
     padding-left: 25px;
     white-space: nowrap; }
     .info #about p {

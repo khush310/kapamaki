@@ -6,18 +6,34 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background: -webkit-gradient(linear, center top, center bottom, from(#738aba), to(#2c4987));
-  -webkit-box-shadow: inset 0 1px 1px -1px white;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  padding-top: 10%; }
+  -webkit-box-shadow: inset 0 1px 1px -1px white; }
   #login_session p {
-    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
-    font-size: 35px;
-    color: white; }
-  #login_session button {
-    height: 4em;
-    width: 20em;
-    padding: 0 0.5em;
-    font-size: 15px; }
+    font-family: "Josefin Sans";
+    font-size: 3em;
+    font-weight: bold;
+    color: #2c4762;
+    margin: 0.5em;
+    text-align: center; }
+  #login_session #screenshot {
+    padding: 1.5em; }
+    #login_session #screenshot img {
+      width: 100%; }
+  #login_session #button {
+    height: 2em;
+    line-height: 2em;
+    width: 70%;
+    max-width: 15em;
+    font-size: 1.3em;
+    border-radius: 0.5em;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.42);
+    border: none;
+    text-transform: capitalize;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.47);
+    font-family: "Josefin Sans";
+    font-weight: 700;
+    background-color: #2c4762;
+    color: white;
+    display: block;
+    margin: 10px auto;
+    text-align: center; }

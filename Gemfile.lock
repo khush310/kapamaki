@@ -21,6 +21,10 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     ffi (1.4.0)
+    handlebars_assets (0.12.0)
+      execjs (>= 1.2.9)
+      sprockets (>= 2.0.3)
+      tilt
     heroku (2.35.0)
       heroku-api (~> 0.3.7)
       launchy (>= 0.3.2)
@@ -72,6 +76,7 @@ PLATFORMS
 
 DEPENDENCIES
   catapult
+  handlebars_assets
   heroku
   rack
   sass

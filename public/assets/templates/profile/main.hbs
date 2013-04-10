@@ -1,0 +1,26 @@
+<div class="header">
+    <div id="coverphoto" style="background-image:url({{cover/source}})" > </div>
+    <div id="dp">
+      <img id="profilepic" src="http://graph.facebook.com/{{id}}/picture" />
+    </div>
+  </div>
+  <div class="info">
+    <div id="name">
+      {{#if name}}
+        {{name}}
+      {{else}}
+        {{first_name}} {{last_name}}
+      {{/if}}
+    </div>
+    <div id="about">
+      {{{format_work work}}}
+      {{{format_education education}}}
+      {{#if location/name}}  
+        <span class="locicon"> </span>
+        Lives in 
+        <span> {{location/name}} </span>
+      {{/if}}
+    </div>
+  </div>
+  <div id="feeds">
+  </div>

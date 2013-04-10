@@ -16535,6 +16535,45 @@ if (!window.K) {
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
+  K.Views.HeaderView = (function(_super) {
+
+    __extends(HeaderView, _super);
+
+    function HeaderView() {
+      this.toggleSidebar = __bind(this.toggleSidebar, this);
+
+      this.showNI = __bind(this.showNI, this);
+      return HeaderView.__super__.constructor.apply(this, arguments);
+    }
+
+    HeaderView.prototype.events = {
+      "click #sidemenu": "toggleSidebar",
+      "click .ni": "showNI"
+    };
+
+    HeaderView.prototype.showNI = function(e) {
+      e.preventDefault();
+      return humane.log("Not Implemented");
+    };
+
+    HeaderView.prototype.toggleSidebar = function(e) {
+      e.preventDefault();
+      console.log("togglingSidebar");
+      return $("body").toggleClass("showSidebar");
+    };
+
+    HeaderView.prototype.template = "    \n<ul>\n  <li class=\"menu\">\n    <span id=\"sidemenu\">\n      <a>\n        <span class=\"icon-reorder\"></span>\n      </a>\n    </span>\n    \n  </li>\n  <li class=\"ni center-menu\">\n      <span id=\"request\">\n        <a>\n        </a>\n      </span>\n      &emsp;\n      <span id=\"messages\">\n        <a>\n        </a>\n      </span>\n      &emsp;\n      <span id=\"notifications\">\n        <a>\n        </a>\n      </span>\n    \n  </li>\n  <li class=\"ni chat\">\n    <span id=\"chat\">\n      <a>\n        <span class=\"icon-comments\"></span>\n      </a>\n    </span>\n  </li>\n</ul>";
+
+    return HeaderView;
+
+  })(Backbone.Marionette.ItemView);
+
+}).call(this);
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
   K.Views.Home.Item = (function(_super) {
 
     __extends(Item, _super);
@@ -16553,7 +16592,7 @@ if (!window.K) {
     Item.prototype.templates = {
       video: "<div class=\"title\">\n  <a href=\"#profile/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}} </abbr>\n    </div>    \n  </h4>\n</div>\n<div class=\"content\">\n  <div id=\"vid\">\n    <p> {{name}} </p>\n  </div>\n  <div class=\"video_container\">\n      <div><img class=\"pic\" src=\"{{picture}}\" /> </div>\n      <div class=\"description\">\n        <h4> {{name}} </h4>\n        {{format_source link}}\n      </div>\n      <div class=\"clear\"> </div> \n  </div>\n</div>      \n<div class=\"clear\"> </div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
       link: " \n<div class=\"title\">\n  <a href=\"#profile/{{from/id}}\">\n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}}\n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}}</abbr>\n    </div>\n  </h4>\n</div>\n<div class=\"content\">\n  <p style=\"padding: 0 1em 0 1em\">\n    {{message}}\n  </p>\n  {{#if name}}\n    <div class=\"link_container\">\n      <div> <img class=\"pic\" src=\"{{picture}}\" /> </div>\n      <div class=\"description\">\n        <h3>{{name}}</h3>\n        <p class=\"see_more\">\n          {{description}}\n        </p>\n      </div>\n    </div>\n  </div>\n{{/if}}\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
-      photo: "<div class=\"title\">\n  <a href=\"#profile/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}}</abbr>\n    </div>\n  </h4>\n</div> \n<div class=\"content\">\n  <div id=\"pic\">\n    <p class=\"see_more\">\n      {{message}}\n    </p>\n  </div>\n  <div class=\"pic_container\">\n    <a href=\"{{link}}\"> \n      <img src=\"{{make_big picture}}\" />\n    </a>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
+      photo: "<div class=\"title\">\n  <a href=\"#profile/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a> \n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time}}</abbr>\n    </div>\n  </h4>\n</div> \n<div class=\"content\">\n  <div id=\"pic\">\n    <p class=\"see_more\">\n      {{message}}\n    </p>\n  </div>\n  <div class=\"pic_container\">\n    <a target=\"_blank\" href=\"{{link}}\"> \n      <img src=\"{{make_big picture}}\" />\n    </a>\n  </div>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}} &nbsp; &nbsp;{{comment_count comments/count}}\n</div>",
       status: "<div class=\"title\">\n  <a href=\"http://facebook.com/{{from/id}}\"> \n    <img src=\"http://graph.facebook.com/{{from/id}}/picture\" />\n  </a>\n  <h4>\n    {{{format_story story story_tags from}}} \n    <div>\n      <abbr class=\"timeago\" title=\"{{created_time}}\"> {{created_time }} </abbr>\n    </div>\n  </h4>\n</div>\n<div class=\"status\">\n  <p>\n    {{message}}\n  </p>\n</div>\n<div class=\"clear\"></div>\n<div class=\"box\">\n  {{like_count likes/count}}\n  &nbsp;&nbsp;\n  {{comment_count comments/count}}\n</div>"
     };
 
@@ -16567,11 +16606,6 @@ if (!window.K) {
     return Item;
 
   })(Backbone.Marionette.ItemView);
-
-}).call(this);
-(function() {
-
-
 
 }).call(this);
 (function() {
@@ -16631,6 +16665,12 @@ if (!window.K) {
 
   })(Backbone.Marionette.Layout);
 
+}).call(this);
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
   K.Views.Sidebar = (function(_super) {
 
     __extends(Sidebar, _super);
@@ -16667,39 +16707,6 @@ if (!window.K) {
     };
 
     return Sidebar;
-
-  })(Backbone.Marionette.ItemView);
-
-  K.Views.HeaderView = (function(_super) {
-
-    __extends(HeaderView, _super);
-
-    function HeaderView() {
-      this.toggleSidebar = __bind(this.toggleSidebar, this);
-
-      this.showNI = __bind(this.showNI, this);
-      return HeaderView.__super__.constructor.apply(this, arguments);
-    }
-
-    HeaderView.prototype.events = {
-      "click #sidemenu": "toggleSidebar",
-      "click .ni": "showNI"
-    };
-
-    HeaderView.prototype.showNI = function(e) {
-      e.preventDefault();
-      return humane.log("Not Implemented");
-    };
-
-    HeaderView.prototype.toggleSidebar = function(e) {
-      e.preventDefault();
-      console.log("togglingSidebar");
-      return $("body").toggleClass("showSidebar");
-    };
-
-    HeaderView.prototype.template = "    \n<ul>\n  <li class=\"menu\">\n    <span id=\"sidemenu\">\n      <a>\n        <span class=\"icon-reorder\"></span>\n      </a>\n    </span>\n    \n  </li>\n  <li class=\"ni center-menu\">\n      <span id=\"request\">\n        <a>\n        </a>\n      </span>\n      &emsp;\n      <span id=\"messages\">\n        <a>\n        </a>\n      </span>\n      &emsp;\n      <span id=\"notifications\">\n        <a>\n        </a>\n      </span>\n    \n  </li>\n  <li class=\"ni chat\">\n    <span id=\"chat\">\n      <a>\n        <span class=\"icon-comments\"></span>\n      </a>\n    </span>\n  </li>\n</ul>";
-
-    return HeaderView;
 
   })(Backbone.Marionette.ItemView);
 
@@ -16753,14 +16760,15 @@ if (!window.K) {
 
     Main.prototype.id = "landing";
 
-    Main.prototype.template = "<div id=\"login_session\">\n  <div class=\"main\"> </div>\n  <p>\n    <strong> kapamaki </strong>\n  </p>\n  <button type=\"submit\"> Login with Facebook </button>\n</div>  ";
+    Main.prototype.template = "<div id=\"login_session\">\n  <p>\n    <strong> kapamaki </strong>\n  </p>\n  <a id=\"button\" href=\"#\" type=\"submit\"> Login with Facebook </a>\n  <div id=\"screenshot\"> <img src=\"/assets/Landing.png\" /> \n  </div>\n</div>  ";
 
     Main.prototype.events = {
-      "click button": "logIntoFacebook"
+      "click #button": "logIntoFacebook"
     };
 
-    Main.prototype.logIntoFacebook = function() {
+    Main.prototype.logIntoFacebook = function(e) {
       var m_appId, m_appUrl, permissionUrl, permissions, redirect_uri;
+      e.preventDefault();
       humane.log("logging in...");
       redirect_uri = window.location.href;
       console.log(redirect_uri);
@@ -16825,10 +16833,24 @@ if (!window.K) {
     }
 
     AppRouter.prototype.routes = {
-      "home": "home",
       "landing": "landing",
       "login": "login",
+      "home": "home",
       "profile/:id": "profile"
+    };
+
+    AppRouter.prototype.landing = function() {
+      var landingView;
+      landingView = new K.Views.Landing.Main;
+      return K.app.stageRegion.show(landingView);
+    };
+
+    AppRouter.prototype.login = function() {
+      return FB.login(function(response) {
+        return window.location.hash = "home";
+      }, {
+        scope: 'read_stream,user_education_history,friends_education_history,last_name'
+      });
     };
 
     AppRouter.prototype.home = function() {
@@ -16851,20 +16873,6 @@ if (!window.K) {
       console.log("finsihed showing two views in regions");
       stream.loadNextPage();
       return window.a = stream;
-    };
-
-    AppRouter.prototype.landing = function() {
-      var landingView;
-      landingView = new K.Views.Landing.Main;
-      return K.app.stageRegion.show(landingView);
-    };
-
-    AppRouter.prototype.login = function() {
-      return FB.login(function(response) {
-        return window.location.hash = "home";
-      }, {
-        scope: 'read_stream,user_education_history,friends_education_history,last_name'
-      });
     };
 
     AppRouter.prototype.profile = function(id) {

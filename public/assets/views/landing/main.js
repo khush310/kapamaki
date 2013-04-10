@@ -12,14 +12,15 @@
 
     Main.prototype.id = "landing";
 
-    Main.prototype.template = "<div id=\"login_session\">\n  <div class=\"main\"> </div>\n  <p>\n    <strong> kapamaki </strong>\n  </p>\n  <button type=\"submit\"> Login with Facebook </button>\n</div>  ";
+    Main.prototype.template = "<div id=\"login_session\">\n  <p>\n    <strong> kapamaki </strong>\n  </p>\n  <a id=\"button\" href=\"#\" type=\"submit\"> Login with Facebook </a>\n  <div id=\"screenshot\"> <img src=\"/assets/Landing.png\" /> \n  </div>\n</div>  ";
 
     Main.prototype.events = {
-      "click button": "logIntoFacebook"
+      "click #button": "logIntoFacebook"
     };
 
-    Main.prototype.logIntoFacebook = function() {
+    Main.prototype.logIntoFacebook = function(e) {
       var m_appId, m_appUrl, permissionUrl, permissions, redirect_uri;
+      e.preventDefault();
       humane.log("logging in...");
       redirect_uri = window.location.href;
       console.log(redirect_uri);

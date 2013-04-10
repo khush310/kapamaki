@@ -1,4 +1,3 @@
-
 class K.Views.Home.Item extends Backbone.Marionette.ItemView
   template: () =>
     @templates[@model.get('type')] or ""

@@ -2,8 +2,6 @@
   overflow-y: scroll;
   height: 100%;
   color: #545761;
-  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
-  word-wrap: break-word;
   font-size: 1em;
   width: 100%;
   overflow-x: hidden; }
@@ -18,8 +16,7 @@
       position: relative;
       -webkit-transform: translate3d(0, 0, 0); }
   #stage #stage-wrapper #main #streams .description {
-    -webkit-box-flex: 1;
-    padding: 0 1em 0 1em; }
+    padding: 1em 0 0 0; }
     #stage #stage-wrapper #main #streams .description h3 {
       margin-top: 0;
       font-size: 1em; }
@@ -27,28 +24,32 @@
     text-decoration: none;
     color: #576b95; }
   #stage #stage-wrapper #main #streams .link_container, #stage #stage-wrapper #main #streams .video_container {
-    background-color: #f3f4f7;
-    border: 1px solid #c5cadd;
-    display: -webkit-box;
+    background-color: #edeff4;
+    border-top: 1px solid #c5cadd;
+    border-bottom: 1px solid #c5cadd;
+    display: block;
     padding: 1em; }
     #stage #stage-wrapper #main #streams .link_container img.pic, #stage #stage-wrapper #main #streams .video_container img.pic {
-      max-width: 100px;
+      width: 100%;
       display: block; }
   #stage #stage-wrapper #main #streams .box {
     background-color: #eff2f5;
     height: 30px;
+    line-height: 30px;
     margin-top: 20px;
-    padding: 9px 0 0 20px;
-    color: #9b9b9b;
+    padding-left: 1em;
+    color: #576b95;
     border-top: 1px solid #c5cadd;
     font-weight: normal;
     font-size: 0.8em; }
   #stage #stage-wrapper #main #streams div.listcontainer > div {
     margin: 10px 10px;
     background: white;
-    border-width: 1px 1px 2.5px;
-    border-style: solid;
-    border-color: rgba(40, 70, 129, 0.43);
+    border: 1px solid #c4cde0;
+    -webkit-box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.03);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.03);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
     overflow: hidden; }
   #stage #stage-wrapper #main #streams .content {
     width: 100%;
@@ -64,6 +65,8 @@
     word-wrap: break-word; }
   #stage #stage-wrapper #main #streams .title {
     padding: 1em; }
+    #stage #stage-wrapper #main #streams .title img {
+      height: 50px; }
     #stage #stage-wrapper #main #streams .title h4 {
       margin: -55px 0 0 65px;
       font-weight: normal;
@@ -78,16 +81,19 @@
     background-color: transparent;
     border: none; }
   #stage #stage-wrapper #main #streams .paging {
-    background-color: #eff2f5;
+    background-color: white;
     height: 40px;
-    margin: 0 auto;
-    color: #9b9b9b;
-    border-top: 2px solid rgba(40, 70, 129, 0.43);
-    border-bottom: 2px solid rgba(40, 70, 129, 0.43);
-    font-weight: bold;
-    font-size: 1.2em;
+    margin: 1em;
+    border: 1px solid #c4cde0;
+    -webkit-box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.03);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.03);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
     text-align: center;
-    text-transform: lowercase;
-    line-height: 40px; }
+    text-transform: capitalize;
+    line-height: 40px;
+    font-family: "Josefin Sans"; }
     #stage #stage-wrapper #main #streams .paging a {
-      color: #576b95; }
+      color: #576b95;
+      font-weight: bold;
+      font-size: 1.2em; }
